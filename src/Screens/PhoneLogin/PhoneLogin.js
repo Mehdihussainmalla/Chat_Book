@@ -5,8 +5,9 @@ import Button from '../../Components/Button'
 import TextInputComp from '../../Components/TextInputs'
 import imagePath from '../../navigation/imagePath'
 import { styles } from './style'
+import navigationStrings from '../../navigation/navigationStrings'
 
-const PhoneLogin = () => {
+const PhoneLogin = ({ navigation }) => {
     return (
         <WrapperContainer>
             <View style={styles.bgcimg}>
@@ -16,9 +17,14 @@ const PhoneLogin = () => {
                 <Text style={styles.logintxt}>Login</Text>
             </View>
             <View style={styles.emailphone}>
-                <View style={styles.emailview}>
+
+
+                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.EMAIL_LOGIN)}
+                    activeOpacity={0.5}
+                    style={styles.emailview}>
                     <Text style={styles.emailtxt}>Email</Text>
-                </View>
+                </TouchableOpacity>
+
                 <View style={styles.phoneview}>
                     <Text style={styles.phonetxt}>Phone</Text>
                 </View>
@@ -46,7 +52,7 @@ const PhoneLogin = () => {
 
             <View style={styles.accountstyle}>
                 <Text style={styles.accountxt}>Don't have an account?</Text>
-                
+
                 <TouchableOpacity activeOpacity={0.5}>
                     <Text style={styles.signuptxt}>Sign up</Text>
                 </TouchableOpacity>

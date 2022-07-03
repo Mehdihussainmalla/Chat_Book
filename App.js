@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { PhoneLogin } from './src/Screens'
 
+import Routes from "./src/navigation/Routes";
 const App = () => {
   return (
     <>
-    <PhoneLogin />
- </>
-    
+      <Routes />
+    </>
+
   )
 }
 
