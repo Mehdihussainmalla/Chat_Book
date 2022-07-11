@@ -7,3 +7,5 @@ export { default as SetPassword } from "./SetPassword/SetPassword";
 
 
 export { default as HomeScreen } from "./HomeScreen/HomeScreen";
+export { default as Profile } from "./Profile/Profile";
+export { default as AccountCreated } from "./AccountCreated/AccountCreated";

@@ -51,8 +51,8 @@ export const styles = StyleSheet.create({
         // color: colors.white
     },
     inputstyle:
-    {
-        marginVertical: moderateScale(30)
+    {marginTop:20
+        // marginVertical: moderateScale(30)
     },
     descstyle:
     {

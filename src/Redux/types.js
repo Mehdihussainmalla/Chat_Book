@@ -1,0 +1,6 @@
+export default{
+    LOGIN:"LOGIN",
+    LOGOUT:"LOGOUT",
+    CLEAR_REDUX_STATE:"CLEAR REDUX STATE"
+
+}

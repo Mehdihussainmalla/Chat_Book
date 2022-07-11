@@ -8,10 +8,11 @@ const Button = ({
     ButtonTxt,
     btnStyle = {},
     txtStyle = {},
-    source
+    source,
+    onPress=()=>{}
 }) => {
     return (
-        <TouchableOpacity
+        <TouchableOpacity onPress={onPress}
             activeOpacity={0.8}
             style={{ ...styles.btnStyle, ...btnStyle }}>
             {source ?

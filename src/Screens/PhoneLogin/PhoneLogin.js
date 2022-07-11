@@ -1,13 +1,20 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Button from '../../Components/Button'
 import TextInputComp from '../../Components/TextInputs'
-import imagePath from '../../navigation/imagePath'
 import { styles } from './style'
 import navigationStrings from '../../navigation/navigationStrings'
+import imagePath from '../../constants/imagePath'
+import actions from '../../Redux/actions'
 
 const PhoneLogin = ({ navigation }) => {
+
+    const Login = () => {
+        // actions.saverUserData()
+        navigation.navigate(navigationStrings.EMAIL_LOGIN)
+    }
+
     return (
         <WrapperContainer>
             <View style={styles.bgcimg}>
@@ -19,7 +26,7 @@ const PhoneLogin = ({ navigation }) => {
             <View style={styles.emailphone}>
 
 
-                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.EMAIL_LOGIN)}
+                <TouchableOpacity onPress={Login}
                     activeOpacity={0.5}
                     style={styles.emailview}>
                     <Text style={styles.emailtxt}>Email</Text>
@@ -31,11 +38,11 @@ const PhoneLogin = ({ navigation }) => {
             </View>
             <TextInputComp
                 inputview={styles.inputstyle}
-                placeHolder={"Enter Phobe Number"} />
+                placeHolder={"Enter Phone Number"} />
             <View style={styles.descstyle}>
                 <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
             </View>
-            <Button
+            <Button onPress={() => navigation.navigate(navigationStrings.PHONE_OTP)}
                 ButtonTxt={"Proceed"} />
 
             <View style={styles.socialstyle}>

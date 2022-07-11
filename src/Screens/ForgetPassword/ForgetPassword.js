@@ -1,11 +1,36 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-
-const ForgetPassword = () => {
+import WrapperContainer from '../../Components/WrapperContainer'
+import fontFamily from '../../styles/fontFamily'
+import { textScale } from '../../styles/responsiveSize'
+import TextInputComp from '../../Components/TextInputs'
+import Button from '../../Components/Button'
+import navigationStrings from '../../navigation/navigationStrings'
+import imagePath from '../../constants/imagePath'
+const ForgetPassword = ({navigation}) => {
   return (
-    <View>
-      <Text>ForgetPassword</Text>
-    </View>
+    <WrapperContainer>
+      <View style={{flex:1}}>
+      <Image
+        style={{ marginVertical: 20 }}
+        source={imagePath.bgc}
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text style={{ fontFamily: fontFamily.BarlowBold, fontSize: textScale(20) }}>ForgetPassword</Text>
+      </View>
+
+      <TextInputComp 
+      inputview={{marginTop:20}}
+      placeHolder={"enter registered email"}/>
+
+      <View style={{marginTop:30}}>
+        <Text style={{ fontFamily: fontFamily.BarlowMedium, fontSize: textScale(16)}}>A link to reset your password will be sent to the entered email for verification</Text>
+      </View>
+      </View>
+      <Button 
+      onPress={()=>navigation.navigate(navigationStrings.SET_PASSWORD)}
+      ButtonTxt={"Submit"}/>
+    </WrapperContainer>
   )
 }
 
