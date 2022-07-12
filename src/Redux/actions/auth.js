@@ -21,6 +21,7 @@ export function register(data) {
         .then(res => {
             console.log(res,"response from actions")
           resolve(res);
+      
         })
         .catch(error => {
           reject(error,"reject");

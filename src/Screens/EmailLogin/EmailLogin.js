@@ -25,28 +25,20 @@ const EmailLogin = ({ navigation }) => {
   const updateState = (data) => setState(state => ({ ...state, ...data }));
 
   const register = async () => {
-    alert('heyy')
-    
-    // let apiData = {
-    //   email: email,
-    //   password: password,
-    //   device_token: "abfhgfhgfgc"
-    // }
-    
+    let apiData = {
+      email: email,
+      password: password,
+      device_token: "abfhgfhgfgc"
+    }
+
     // console.log(apiData, "api data is>>>")  
     try {
-      // const res = actions.register(apiData)
-      // console.log(res, "res>>>>from email ")
-      // console.log(res?.data,"ressssssssss>>>>>>>>")
-      // navigation.navigate(navigationStrings.EMAIL_OTP, { data: data })
-      let res = await axios.get('https://dev.pressure.vision/api/register',{
-        email:'abxhef@gmail.com',
-        password:'123456',
-        device_token:'abhcejf'
-      })
-      // let result = await JSON.stringify(res)
-      console.log(res,"resssss")
-    } catch (error) { 
+      const res = await actions.register(apiData)
+      console.log(res, "res>>>>from email ")
+      console.log(res, "ressssssssss>>>>>>>>")
+      const data =  res;
+      navigation.navigate(navigationStrings.PHONE_OTP, { data: data })
+    } catch (error) {
 
       console.log(error, "error occurred")
 
