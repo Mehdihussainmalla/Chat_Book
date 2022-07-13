@@ -37,7 +37,7 @@ const EmailLogin = ({ navigation }) => {
       console.log(res, "res>>>>from email ")
       console.log(res, "ressssssssss>>>>>>>>")
       const data =  res;
-      navigation.navigate(navigationStrings.PHONE_OTP, { data: data })
+      navigation.navigate(navigationStrings.EMAIL_OTP, { data: data })
     } catch (error) {
 
       console.log(error, "error occurred")

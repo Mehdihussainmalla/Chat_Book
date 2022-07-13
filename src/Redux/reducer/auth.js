@@ -21,10 +21,10 @@ const userStatus = (state = initialState, action) => {
         case types.LOGOUT:
             removeData().then((res) => {
                 console.log('user status', res)
-            })
-            return {
-                userData: undefined
+                return { ...state.userData, userData: res }
             }
+            )
+            return { ...state.userData, userData: undefined }
 
         default:
             return { ...state }

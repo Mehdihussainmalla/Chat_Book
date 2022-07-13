@@ -10,10 +10,30 @@ import actions from '../../Redux/actions'
 
 const PhoneLogin = ({ navigation }) => {
 
-    const Login = () => {
-        // actions.saverUserData()
-        navigation.navigate(navigationStrings.EMAIL_LOGIN)
+    const [state, setState] = useState({
+
+        phone_number: "",
+        device_token: ""
+    })
+
+    const { phone_number, device_token } = state;
+    const updateState = (data) => setState(state => ({ ...state, ...data }));
+
+    const register = async () => {
+        let apiData = {
+            phone_number: phone_number,
+            device_token: "abcgde"
+        }
+        console.log(apiData, "api data phone login is")
+        try {
+            const res = await actions.register(apiData);
+            console.log(res, "res>>>")
+            navigation.navigate(navigationStrings.PHONE_OTP, { data: res })
+        } catch (error) {
+            console.log(error, "error occurred")
+        }
     }
+
 
     return (
         <WrapperContainer>
@@ -26,7 +46,8 @@ const PhoneLogin = ({ navigation }) => {
             <View style={styles.emailphone}>
 
 
-                <TouchableOpacity onPress={Login}
+                <TouchableOpacity
+                    // onPress={Login}
                     activeOpacity={0.5}
                     style={styles.emailview}>
                     <Text style={styles.emailtxt}>Email</Text>
@@ -37,12 +58,15 @@ const PhoneLogin = ({ navigation }) => {
                 </View>
             </View>
             <TextInputComp
+                value={phone_number}
+                onChangeText={(phone_number) => updateState({ phone_number })}
                 inputview={styles.inputstyle}
                 placeHolder={"Enter Phone Number"} />
             <View style={styles.descstyle}>
                 <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
             </View>
-            <Button onPress={() => navigation.navigate(navigationStrings.PHONE_OTP)}
+            <Button
+                onPress={register}
                 ButtonTxt={"Proceed"} />
 
             <View style={styles.socialstyle}>

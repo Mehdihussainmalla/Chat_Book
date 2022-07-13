@@ -8,10 +8,30 @@ import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import Button from '../../Components/Button'
 import imagePath from '../../constants/imagePath'
 import navigationStrings from '../../navigation/navigationStrings'
+import actions from '../../Redux/actions'
 const PhoneOtp = ({ navigation, route }) => {
-  const data = route?.params;
-  console.log(data?.data?.data?.otp, "data aaa")
+  const data = route?.params?.data?.data;
+  const otp = data?.otp;
+  const id = data?.id;
+  console.log(id, "dataa")
   const [code, setCode] = useState();
+
+  const verifyOtp = async () => {
+    let apiData = {
+      otp: otp,
+      id: id
+    }
+    console.log(apiData, "apiData")
+    try {
+      const res = await actions.verifyOtp(apiData)
+      console.log(res, "res>>>")
+      navigation.navigate(navigationStrings.PROFILE, { data: res })
+
+    } catch (error) {
+      console.log(error, "error")
+    }
+  }
+
   return (
     <WrapperContainer>
       <View style={{ flex: 1 }}>
@@ -59,7 +79,7 @@ const PhoneOtp = ({ navigation, route }) => {
       </View>
 
       <Button
-        onPress={() => navigation.navigate(navigationStrings.PROFILE)}
+        onPress={verifyOtp}
         ButtonTxt={"Proceed"} />
     </WrapperContainer>
   )
