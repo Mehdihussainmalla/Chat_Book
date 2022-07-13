@@ -3,7 +3,7 @@ import store from "../store";
 import types from "../types";
 import axios from 'axios'
 const { dispatch } = store;
-import { REGISTER, VERIFY_OTP } from "../../config/urls";
+import { REGISTER, RESEND_OTP, VERIFY_OTP } from "../../config/urls";
 
 export const saveUserData = (data) => {
   console.log(data, "data>>>>>>>>>>>")
@@ -47,4 +47,17 @@ export const verifyOtp = async (data) => {
       reject(error, "reject");
     });
   })
+}
+
+
+export const resendOtp = (data) => {
+  return new Promise((resolve, reject) => {
+    apiPost(RESEND_OTP, data).then((res) => {
+      console.log(res, "res>>")
+      resolve(res)
+    }).catch(error => {
+      reject(error, "reject")
+    })
+  })
+
 }

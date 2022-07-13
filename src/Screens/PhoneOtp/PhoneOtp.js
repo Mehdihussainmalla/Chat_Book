@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import { moderateScale, textScale } from '../../styles/responsiveSize'
@@ -32,6 +32,21 @@ const PhoneOtp = ({ navigation, route }) => {
     }
   }
 
+
+  const resendOtp = async () => {
+    let apiData = {
+      id: id,
+    }
+    const res = await actions.resendOtp(apiData)
+    console.log(res)
+    try {
+
+    } catch (error) {
+      console.log(error, "error")
+
+    }
+
+  }
   return (
     <WrapperContainer>
       <View style={{ flex: 1 }}>
@@ -74,7 +89,14 @@ const PhoneOtp = ({ navigation, route }) => {
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
           <Text style={{ fontFamily: fontFamily.BarlowSemiBold, }}>Didn't received OTP code?</Text>
-          <Text style={{ fontFamily: fontFamily.BarlowSemiBold, color: colors.red }}>Resend code</Text>
+          <TouchableOpacity
+            onPress={resendOtp}
+            activeOpacity={0.5}>
+            <Text style={{
+              fontFamily: fontFamily.BarlowSemiBold,
+              color: colors.red
+            }}>Resend code</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
