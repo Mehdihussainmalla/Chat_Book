@@ -47,7 +47,7 @@ const PhoneLogin = ({ navigation }) => {
 
 
                 <TouchableOpacity
-                    // onPress={Login}
+                     onPress={()=>navigation.navigate(navigationStrings.EMAIL_LOGIN)}
                     activeOpacity={0.5}
                     style={styles.emailview}>
                     <Text style={styles.emailtxt}>Email</Text>

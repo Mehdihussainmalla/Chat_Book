@@ -3,12 +3,11 @@ import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Header from '../../Components/Header'
 import imagePath from '../../constants/imagePath'
-import colors from '../../styles/colors'
-import fontFamily from '../../styles/fontFamily'
 import TextInputComp from '../../Components/TextInputs'
 import Button from '../../Components/Button'
 import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
+import { styles } from './style'
 const Profile = ({ navigation }) => {
 
     const [state, setState] = useState({
@@ -76,13 +75,8 @@ const Profile = ({ navigation }) => {
             },
 
             { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
-
-
             ])
     }
-
-
-
     const galleryClick = () => {
         ImagePicker.openPicker({
             width: 300,
@@ -97,102 +91,88 @@ const Profile = ({ navigation }) => {
         });
     }
 
-    
+
     return (
         <WrapperContainer>
             <View style={{ flex: 1 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Header
                         isBackIcon={true} />
-                    <View style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginHorizontal: 90,
-                        marginTop: 1,
-                        // backgroundColor: "red"
-                    }}>
-                        <Image 
-                        style={{height:"20%",width:"40%"}}
-                        source={{uri:image_url}} />
+                    <View style={styles.imgstyle}>
+                        <Image
+                            style={styles.img}
+                            source={{ uri: image_url }} />
                     </View>
                     <TouchableOpacity
                         onPress={onSelectImage}
-                        style={{
-                            alignSelf: "center", borderWidth: 1.2,
-                            borderRadius: 8,
-                            borderColor: colors.red,
-                            marginTop: 10,
-                        }}>
-                        <Text style={{
-                            color: colors.red,
-                            fontFamily: fontFamily.BarlowSemiBold,
-                            padding: 5
-                        }}>Edit Profile</Text>
+                        style={styles.editstyle}>
+                        <Text style={styles.profiletxt}>Edit Profile</Text>
                     </TouchableOpacity>
 
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontFamily: fontFamily.BarlowSemiBold }}>USERNAME</Text>
+                    <View style={styles.usernamelabel}>
+                        <Text style={styles.usertxt}>USERNAME</Text>
                     </View>
                     <TextInputComp
                         value={username}
                         onChangeText={(username) => updateState({ username })}
-                        inputview={{ marginTop: 10 }}
+                        inputview={styles.userinput}
                         placeHolder={"Full Name"} />
 
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontFamily: fontFamily.BarlowSemiBold }}>D.O.B</Text>
+                    <View style={styles.doblabel}>
+                        <Text style={styles.dobtxt}>D.O.B</Text>
                     </View>
                     <TextInputComp
                         value={dob}
                         onChangeText={(dob) => updateState({ dob })}
-                        inputview={{ marginTop: 10 }}
+                        inputview={styles.dobinput}
                         placeHolder={"DD/MM/YY"} />
 
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontFamily: fontFamily.BarlowSemiBold }}>PHONE NUMBER</Text>
+                    <View style={styles.phonelabel}>
+                        <Text style={styles.phonetxt}>PHONE NUMBER</Text>
                     </View>
                     <TextInputComp
+
                         value={phone_number}
                         onChangeText={(phone_number) => updateState({ phone_number })}
-                        inputview={{ marginTop: 10 }}
+                        inputview={styles.phoneinput}
                         placeHolder={"+916005927575"} />
 
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontFamily: fontFamily.BarlowSemiBold }}>EMAIL ADDRESS</Text>
+                    <View style={styles.emaillabel}>
+                        <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
                     </View>
                     <TextInputComp
                         value={email}
                         onChangeText={(email) => updateState({ email })}
-                        inputview={{ marginTop: 10 }}
+                        inputview={styles.emailinput}
                         placeHolder={"forexample@gmail.com"} />
 
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontFamily: fontFamily.BarlowSemiBold }}>PROFILE</Text>
+                    <View style={styles.profilelabel}>
+                        <Text style={styles.profiletxt2}>PROFILE</Text>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "flex-start", marginTop: 10 }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
+                    <View style={styles.privatepublicview}>
+                        <View style={styles.radiostyle}>
                             <Image source={imagePath.Radio_icon} />
-                            <Text style={{ paddingLeft: 10, fontFamily: fontFamily.BarlowBold }}>Public</Text>
+                            <Text style={styles.radiotxt}>Public</Text>
                         </View>
 
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start", marginLeft: 10 }}>
+                        <View style={styles.publicstyle}>
                             <Image source={imagePath.Radio_icon} />
-                            <Text style={{ paddingLeft: 10, fontFamily: fontFamily.BarlowBold }}>Private</Text>
+                            <Text style={styles.publictxt}>Private</Text>
                         </View>
                     </View>
-                    <View style={{ marginTop: 1 }}>
+                    <View style={styles.biolabel}>
                         <Text>BIO</Text>
                     </View>
                     <TextInputComp
                         value={about_us}
                         onChangeText={(about_us) => updateState({ about_us })}
-                        inputview={{ paddingTop: 1, padding: 10 }}
+                        inputview={styles.aboutusinput}
                         placeHolder={"about yourself"} />
 
                     <TextInputComp
                         value={name}
                         onChangeText={(name) => updateState({ name })}
-                        placeHolder="eneter your name" />
+                        placeHolder="enter your name" />
                 </ScrollView>
             </View>
             <Button
@@ -204,4 +184,3 @@ const Profile = ({ navigation }) => {
 
 export default Profile
 
-const styles = StyleSheet.create({})
