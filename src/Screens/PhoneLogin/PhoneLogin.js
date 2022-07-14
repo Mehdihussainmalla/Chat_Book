@@ -22,7 +22,7 @@ const PhoneLogin = ({ navigation }) => {
     const register = async () => {
         let apiData = {
             phone_number: phone_number,
-            device_token: "abcgde"
+            device_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjliZjhiYy0wNjE0LTQ5YzktOGVlNy03ODViY2E4ODg4ZTIiLCJqdGkiOiIxMTRlNGNiZGMwYTE5NGM2MjA2OWVmZTk1NTJlYTkwYjU5ZDNhNTZiZWIwY2IwNzkxYmY4Yz"
         }
         console.log(apiData, "api data phone login is")
         try {

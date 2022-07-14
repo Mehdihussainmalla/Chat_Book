@@ -2,17 +2,23 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import navigationStrings from '../../navigation/navigationStrings'
-import actions from '../../Redux/actions'
+import { logout } from "../../Redux/actions/auth";
 
 const HomeScreen = ({ navigation }) => {
 
-  const logout = () => {
-   actions.logout()
+  const signOut = () => {
+    try {
+      logout()
+    } catch (error) {
+      console.log(error, "error ")
+
+    }
+
   }
   return (
     <WrapperContainer>
       <TouchableOpacity
-        onPress={logout}
+        onPress={signOut}
         style={{ marginTop: 100 }}>
         <Text>HomeScreen</Text>
       </TouchableOpacity>

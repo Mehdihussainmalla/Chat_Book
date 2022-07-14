@@ -6,20 +6,22 @@ export const styles = StyleSheet.create({
 
     imgstyle:
     {
-        justifyContent: "center",
-        alignItems: "center",
-        marginHorizontal: 90,
-        marginTop: 1,
-        // backgroundColor: "red"
+        // marginVertical:15,
+        backgroundColor: 'red'
     },
     img:
-        { height: "20%", width: "40%" },
+    {
+        height: "15%",
+        justifyContent: 'center',
+        alignSelf: "center",
+        width: "40%"
+    },
     editstyle:
     {
         alignSelf: "center", borderWidth: 1.2,
         borderRadius: 8,
         borderColor: colors.red,
-        marginTop: 10,
+        marginTop: 5,
     },
     profiletxt:
     {
@@ -28,52 +30,56 @@ export const styles = StyleSheet.create({
         padding: 5
     },
     usernamelabel:
-        { marginTop: 10 },
+        { marginTop: 5 },
     usertxt:
         { fontFamily: fontFamily.BarlowSemiBold },
     userinput:
-        { marginTop: 10 },
+        { marginTop: 5 },
     doblabel:
-        { marginTop: 10 },
+        { marginTop: 5 },
     dobinput:
-        { marginTop: 10 },
+        { marginTop: 5 },
     dobtxt:
         { fontFamily: fontFamily.BarlowSemiBold },
 
     phonelabel:
-        { marginTop: 10 },
+        { marginTop: 5 },
 
     phonetxt:
         { fontFamily: fontFamily.BarlowSemiBold },
     phoneinput:
-        { marginTop: 10 },
+        { marginTop: 5 },
     emaillabel:
-        { marginTop: 10 },
+        { marginTop: 5 },
     emailtxt:
         { fontFamily: fontFamily.BarlowSemiBold },
     emailinput:
-        { marginTop: 10 },
+        { marginTop: 5 },
     profilelabel:
-        { marginTop: 10 },
+        { marginTop: 5 },
     profiletxt2:
         { fontFamily: fontFamily.BarlowSemiBold },
     privatepublicview:
-        { flexDirection: "row", justifyContent: "flex-start", marginTop: 10 },
+        { flexDirection: "row", justifyContent: "flex-start", marginTop: 5 },
     radiostyle:
         { flexDirection: "row", justifyContent: "flex-start" },
     radiotxt:
         { paddingLeft: 10, fontFamily: fontFamily.BarlowBold },
 
     publicstyle:
-        { flexDirection: "row", justifyContent: "flex-start", marginLeft: 10 },
+        { flexDirection: "row", justifyContent: "flex-start", marginLeft: 5 },
     publictxt:
         { paddingLeft: 10, fontFamily: fontFamily.BarlowBold },
 
     biolabel: {
-        marginRight: 10
+        marginRight: 5
     },
     aboutusinput:
-        { paddingTop: 1, padding: 10 }
+
+    {
+        marginTop: 5
+
+    }
 
 
 

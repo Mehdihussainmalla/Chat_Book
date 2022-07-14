@@ -34,12 +34,11 @@ const EmailLogin = ({ navigation }) => {
     // console.log(apiData, "api data is>>>")  
     try {
       const res = await actions.register(apiData)
-      console.log(res, "res>>>>from email ")
-      console.log(res, "ressssssssss>>>>>>>>")
+      // console.log(res, "res>>>>from email ")
+      // console.log(res, "ressssssssss>>>>>>>>")
       const data =  res;
       navigation.navigate(navigationStrings.EMAIL_OTP, { data: data })
     } catch (error) {
-
       console.log(error, "error occurred")
 
     }

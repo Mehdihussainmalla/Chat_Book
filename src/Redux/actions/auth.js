@@ -3,7 +3,7 @@ import store from "../store";
 import types from "../types";
 import axios from 'axios'
 const { dispatch } = store;
-import { REGISTER, RESEND_OTP, VERIFY_OTP } from "../../config/urls";
+import { REGISTER, RESEND_OTP, VERIFY_OTP, UPDATE_PROFILE } from "../../config/urls";
 
 export const saveUserData = (data) => {
   console.log(data, "data>>>>>>>>>>>")
@@ -13,6 +13,12 @@ export const saveUserData = (data) => {
   })
 }
 
+
+export const logout = () => {
+  dispatch({
+    type: types.LOGOUT
+  })
+}
 
 export function register(data) {
   console.log('fher>>>>', data);
@@ -27,14 +33,6 @@ export function register(data) {
         reject(error, "reject");
       });
   });
-}
-
-
-
-export const logout = () => {
-  dispatch({
-    type: types.LOGOUT
-  })
 }
 
 export const verifyOtp = async (data) => {
@@ -57,6 +55,19 @@ export const resendOtp = (data) => {
       resolve(res)
     }).catch(error => {
       reject(error, "reject")
+    })
+  })
+
+}
+
+export const editProfile = (data, header = {}) => {
+  return new Promise((resolve, reject) => {
+    apiPost(UPDATE_PROFILE, data, header).then((res) => {
+      console.log(res, "res>>>")
+      resolve(res)
+      // saveUserData(res.data)
+    }).catch(error => {
+      reject(error, "error")
     })
   })
 

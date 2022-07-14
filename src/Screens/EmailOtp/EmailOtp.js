@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View ,Image} from 'react-native'
 import React, { useState } from 'react';
 import { moderateScale, textScale } from '../../styles/responsiveSize'
 import fontFamily from '../../styles/fontFamily';

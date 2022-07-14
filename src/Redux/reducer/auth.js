@@ -1,4 +1,4 @@
-import { clearUserData, removeData, } from "../../utils/utils";
+import { clearUserData, removeData, removeItem, } from "../../utils/utils";
 import types from "../types";
 const initialState = {
     userData: {},
@@ -18,13 +18,15 @@ const userStatus = (state = initialState, action) => {
                 userData: data
 
             };
-        case types.LOGOUT:
-            removeData().then((res) => {
-                console.log('user status', res)
-                return { ...state.userData, userData: res }
-            }
-            )
-            return { ...state.userData, userData: undefined }
+            case types.LOGOUT:{
+                removeData("userData").then((res)=>{
+                  console.log('res',res)
+                })
+                return{
+                  userData:undefined
+                }
+              }
+
 
         default:
             return { ...state }
