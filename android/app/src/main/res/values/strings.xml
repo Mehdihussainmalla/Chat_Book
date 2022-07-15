@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Chat_Book</string>
+
+<string name="facebook_app_id">455338589378090</string>
+<string name="fb_login_protocol_scheme">fb455338589378090</string>
+<string name="facebook_client_token">15d10efb5f5ac537dc1c1ebaa1620b7d</string>
+
+
 </resources>

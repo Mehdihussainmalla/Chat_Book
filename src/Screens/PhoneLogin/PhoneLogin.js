@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Button from '../../Components/Button'
 import TextInputComp from '../../Components/TextInputs'
@@ -7,7 +7,7 @@ import { styles } from './style'
 import navigationStrings from '../../navigation/navigationStrings'
 import imagePath from '../../constants/imagePath'
 import actions from '../../Redux/actions'
-
+import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
 const PhoneLogin = ({ navigation }) => {
 
     const [state, setState] = useState({
@@ -34,6 +34,54 @@ const PhoneLogin = ({ navigation }) => {
     //     }
     // }
 
+    // useEffect(() => {
+    //     GoogleSignin.configure();
+    //   }, [])
+
+    const fbLogin = (resCallBack) => {
+        LoginManager.logOut();
+        return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
+            result => {
+                console.log("FB_LOGIN_RESULT =====>", result);
+                if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
+                    resCallBack({ message: "email is required" })
+                }
+                if (result.isCancelled) {
+                    console.log("error")
+                } else {
+                    const infoResquest = new GraphRequest(
+                        '/me?fields = email, name, picture',
+                        null,
+                        resCallBack
+                    );
+                    new GraphRequestManager().addRequest(infoResquest).start()
+                }
+            },
+            function (error) {
+                console.log("login failed with error", error)
+            }
+        )
+    }
+
+    const onFbLogin = async () => {
+        try {
+            await fbLogin(resInfoCallBack)
+
+        } catch (error) {
+            console.log("error", error)
+        }
+    }
+
+    const resInfoCallBack = async (error, result) => {
+        if (error) {
+            console.log("Login Error", error)
+        } else {
+            const userData = result;
+            console.log(userData)
+            //   saveUserData(userData);
+
+        }
+    }
 
     return (
         <WrapperContainer>
@@ -73,6 +121,7 @@ const PhoneLogin = ({ navigation }) => {
                 <Text style={styles.socialtxt}>Login With Social</Text>
             </View>
             <Button
+                onPress={onFbLogin}
                 source={imagePath.facebook_icon}
                 ButtonTxt={"Sign in with Facebook"}
             />

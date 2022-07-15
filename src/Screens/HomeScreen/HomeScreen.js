@@ -88,21 +88,21 @@ const HomeScreen = ({ navigation }) => {
         />
       </View>
 
-      <FlatList
+      {/* <FlatList
         data={homeData}
         renderItem={homeRender}
-      />
+      /> */}
 
       <View>
         <Text>fiosdf</Text>
       </View>
 
-      {/* <TouchableOpacity
+      <TouchableOpacity
 
         onPress={signOut}
-        style={{ marginTop: 100, backgroundColor: "red" }}>
+        style={{ marginTop: 100 }}>
         <Text>HomeScreen</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </WrapperContainer>
   )
 }
