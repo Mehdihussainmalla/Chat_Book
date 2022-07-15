@@ -55,8 +55,8 @@ const id=data?.id;
         //     type: 'image/jpeg',
         // });
         console.log(formData, "formdata >>>")
-        let header = { "Content-Type": "multipart/form-data" }
-        await actions.editProfile(formData,header).then((res) => {
+        // let header = { "Content-Type": "multipart/form-data" }
+        await actions.editProfile(formData, {}).then((res) => {
             console.log("response after actions>>>>", res)
             navigation.navigate(navigationStrings.ACCOUNT_CREATED)
 

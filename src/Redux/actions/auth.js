@@ -6,7 +6,7 @@ const { dispatch } = store;
 import { REGISTER, RESEND_OTP, VERIFY_OTP, UPDATE_PROFILE } from "../../config/urls";
 
 export const saveUserData = (data) => {
-  console.log(data, "data>>>>>>>>>>>")
+  // console.log(data, "data>>>>>>>>>>>")
   dispatch({
     type: types.LOGIN,
     payload: data
@@ -65,7 +65,7 @@ export const editProfile = (data, header = {}) => {
     apiPost(UPDATE_PROFILE, data, header).then((res) => {
       console.log(res, "res>>>")
       resolve(res)
-      // saveUserData(res.data)
+     saveUserData(res.data)
     }).catch(error => {
       reject(error, "error")
     })
