@@ -9,8 +9,9 @@ import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
-const Profile = ({ navigation }) => {
-
+const Profile = ({ navigation ,route}) => {
+const data = route?.params?.data?.data;
+const id=data?.id;
     const [state, setState] = useState({
         email: "",
         phone_number: "",
@@ -29,30 +30,17 @@ const Profile = ({ navigation }) => {
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
-    // const profileUpdate= async()=>{
-    //     let apiData={
-    //         name:name,
-    //         username:username,
-    //         gender:gender,
-    //         dob:dob,
-    //         email:email,
-    //         about_us:about_us,
-    //         country_code:country_code,
-    //         phone_number:phone_number,
-    //     }
-    //     await actions.editProfile(apiData).then((res) => {
-    //         console.log("response after actions>>>>", res)
-    //         // navigation.navigate(navigationStrings.HOMESCREEN)
 
-    //     }).catch((error) => {
-    //         console.log(error, "error occurred")
-    //     })
-    // }
+    const onChangeTextResult = (key, value) => {
+        //  console.log(key, value, "key");
+         updateState({ [key]: value })
+    }
 
     const profileUpdate = async () => {
 
         let formData = new FormData();
-        formData.append('username', username),
+            formData.append('id',id),
+            formData.append('username', username),
             formData.append('dob', dob),
             formData.append('phone_number', phone_number),
             formData.append('email', email),
@@ -60,16 +48,17 @@ const Profile = ({ navigation }) => {
             formData.append('about_us', about_us),
             formData.append('gender', gender),
             formData.append('country_code', country_code)
-        formData.append('image_url', {
-            uri: image_url,
-            name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-            type: 'image/jpeg',
-        });
+            formData.append('image_url', image_url);
+        // {
+        //     uri: image_url,
+        //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+        //     type: 'image/jpeg',
+        // });
         console.log(formData, "formdata >>>")
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData,header).then((res) => {
             console.log("response after actions>>>>", res)
-            // navigation.navigate(navigationStrings.HOMESCREEN)
+            navigation.navigate(navigationStrings.ACCOUNT_CREATED)
 
         }).catch((error) => {
             console.log(error, "error occurred")
@@ -79,8 +68,6 @@ const Profile = ({ navigation }) => {
     }
 
     //........image picker...........//
-
-
     const cameraClick = () => {
         ImagePicker.openCamera({
             width: 300,
@@ -90,11 +77,12 @@ const Profile = ({ navigation }) => {
             console.log(image);
             const imageUri = Platform.OS === "ios" ? image?.sourceURL : image?.path;
             console.log(imageUri, "imageuri is >>>");
-            updateState({ image_url: imageUri });
+            // onChangeTextResult("image_url", imageUri);
+            // updateState({ image_url: imageUri });
         });
 
     }
-
+   
     const onSelectImage = () => {
 
         Alert.alert(
@@ -121,12 +109,11 @@ const Profile = ({ navigation }) => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             // console.log(imageUri, "image is")
-            updateState({ image_url: imageUri })
-            // console.log(accoryImage, "accessory image is")
+            onChangeTextResult("image_url", imageUri);
+            // updateState({ image_url: imageUri })
+            console.log(image_url, " image is")
         });
     }
-
-
     return (
             <WrapperContainer>
             {/* <ScrollView showsVerticalScrollIndicator={false}> */}
