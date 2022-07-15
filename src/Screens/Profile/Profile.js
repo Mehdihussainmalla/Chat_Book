@@ -55,8 +55,8 @@ const id=data?.id;
         //     type: 'image/jpeg',
         // });
         console.log(formData, "formdata >>>")
-        // let header = { "Content-Type": "multipart/form-data" }
-        await actions.editProfile(formData, {}).then((res) => {
+         let header = { "Content-Type": "multipart/form-data" }
+        await actions.editProfile(formData, header).then((res) => {
             console.log("response after actions>>>>", res)
             navigation.navigate(navigationStrings.ACCOUNT_CREATED)
 
@@ -108,7 +108,6 @@ const id=data?.id;
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
-            // console.log(imageUri, "image is")
             onChangeTextResult("image_url", imageUri);
             // updateState({ image_url: imageUri })
             console.log(image_url, " image is")

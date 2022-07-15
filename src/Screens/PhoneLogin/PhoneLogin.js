@@ -19,20 +19,20 @@ const PhoneLogin = ({ navigation }) => {
     const { phone_number, device_token } = state;
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
-    const register = async () => {
-        let apiData = {
-            phone_number: phone_number,
-            device_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjliZjhiYy0wNjE0LTQ5YzktOGVlNy03ODViY2E4ODg4ZTIiLCJqdGkiOiIxMTRlNGNiZGMwYTE5NGM2MjA2OWVmZTk1NTJlYTkwYjU5ZDNhNTZiZWIwY2IwNzkxYmY4Yz"
-        }
-        console.log(apiData, "api data phone login is")
-        try {
-            const res = await actions.register(apiData);
-            console.log(res, "res>>>")
-            navigation.navigate(navigationStrings.PHONE_OTP, { data: res })
-        } catch (error) {
-            console.log(error, "error occurred")
-        }
-    }
+    // const register = async () => {
+    //     let apiData = {
+    //         phone_number: phone_number,
+    //         device_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NjliZjhiYy0wNjE0LTQ5YzktOGVlNy03ODViY2E4ODg4ZTIiLCJqdGkiOiIxMTRlNGNiZGMwYTE5NGM2MjA2OWVmZTk1NTJlYTkwYjU5ZDNhNTZiZWIwY2IwNzkxYmY4Yz"
+    //     }
+    //     console.log(apiData, "api data phone login is")
+    //     try {
+    //         const res = await actions.register(apiData);
+    //         console.log(res, "res>>>")
+    //         navigation.navigate(navigationStrings.PHONE_OTP, { data: res })
+    //     } catch (error) {
+    //         console.log(error, "error occurred")
+    //     }
+    // }
 
 
     return (
@@ -66,7 +66,7 @@ const PhoneLogin = ({ navigation }) => {
                 <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
             </View>
             <Button
-                onPress={register}
+                // onPress={register}
                 ButtonTxt={"Proceed"} />
 
             <View style={styles.socialstyle}>

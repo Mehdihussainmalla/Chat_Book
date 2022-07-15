@@ -18,7 +18,7 @@ const PhoneOtp = ({ navigation, route }) => {
 
   const verifyOtp = async () => {
     let apiData = {
-      otp: otp,
+      otp: code,
       id: id
     }
     console.log(apiData, "apiData")

@@ -24,25 +24,25 @@ const EmailLogin = ({ navigation }) => {
 
   const updateState = (data) => setState(state => ({ ...state, ...data }));
 
-  const register = async () => {
-    let apiData = {
-      email: email,
-      password: password,
-      device_token: "abfhgfhgfgc"
-    }
+  // const register = async () => {
+  //   let apiData = {
+  //     email: email,
+  //     password: password,
+  //     device_token: "abfhgfhgfgc"
+  //   }
 
-    // console.log(apiData, "api data is>>>")  
-    try {
-      const res = await actions.register(apiData)
-      // console.log(res, "res>>>>from email ")
-      // console.log(res, "ressssssssss>>>>>>>>")
-      const data =  res;
-      navigation.navigate(navigationStrings.EMAIL_OTP, { data: data })
-    } catch (error) {
-      console.log(error, "error occurred")
+  //   // console.log(apiData, "api data is>>>")  
+  //   try {
+  //     const res = await actions.register(apiData)
+  //     // console.log(res, "res>>>>from email ")
+  //     // console.log(res, "ressssssssss>>>>>>>>")
+  //     const data =  res;
+  //     navigation.navigate(navigationStrings.EMAIL_OTP, { data: data })
+  //   } catch (error) {
+  //     console.log(error, "error occurred")
 
-    }
-  }
+  //   }
+  // }
   return (
     <WrapperContainer>
 
@@ -88,7 +88,7 @@ const EmailLogin = ({ navigation }) => {
         <Text style={{ color: colors.red, fontFamily: fontFamily.BarlowSemiBold }}>ForgetPassword?</Text>
       </TouchableOpacity>
       <Button
-        onPress={register}
+        // onPress={register}
         ButtonTxt={"Proceed"} />
 
       <View style={styles.socialstyle}>
