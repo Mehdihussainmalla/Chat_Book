@@ -41,7 +41,7 @@ const PhoneLogin = ({ navigation }) => {
                 <Image source={imagePath.bgc} />
             </View>
             <View style={styles.loginheading}>
-                <Text style={styles.logintxt}>Login</Text>
+                <Text style={styles.logintxt}>SignUp with Phone Number</Text>
             </View>
             <View style={styles.emailphone}>
 
@@ -64,13 +64,20 @@ const PhoneLogin = ({ navigation }) => {
                 placeHolder={"Enter Phone Number"} />
             <View style={styles.descstyle}>
                 <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
+
             </View>
+            <TouchableOpacity
+                onPress={() => navigation.navigate(navigationStrings.EMAIL_SIGNUP)}
+                activeOpacity={0.8}>
+                <Text style={styles.emailsignup}>SignUp using Email</Text>
+            </TouchableOpacity>
+
             <Button
                 onPress={register}
                 ButtonTxt={"Proceed"} />
 
             <View style={styles.socialstyle}>
-                <Text style={styles.socialtxt}>Login With Social</Text>
+                <Text style={styles.socialtxt}>SignUp With Social</Text>
             </View>
             <Button
                 source={imagePath.facebook_icon}
@@ -82,12 +89,12 @@ const PhoneLogin = ({ navigation }) => {
                 ButtonTxt={"Sign in with Google"} />
 
             <View style={styles.accountstyle}>
-                <Text style={styles.accountxt}>Don't have an account?</Text>
+                <Text style={styles.accountxt}>Already have an account?</Text>
 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate(navigationStrings.PHONE_SIGNUP)}
+                    onPress={() => navigation.navigate(navigationStrings.PHONE_LOGIN)}
                     activeOpacity={0.5}>
-                    <Text style={styles.signuptxt}>Sign up</Text>
+                    <Text style={styles.signuptxt}>Login</Text>
                 </TouchableOpacity>
             </View>
         </WrapperContainer>

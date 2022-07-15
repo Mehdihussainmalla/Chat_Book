@@ -54,7 +54,7 @@ const EmailLogin = ({ navigation }) => {
         <Image source={imagePath.bgc} />
       </View>
       <View style={styles.loginheading}>
-        <Text style={styles.logintxt}>Login</Text>
+        <Text style={styles.logintxt}>Sign Up using email</Text>
       </View>
       <View style={styles.emailphone}>
 
@@ -82,17 +82,18 @@ const EmailLogin = ({ navigation }) => {
         placeHolder={"enter your password"} />
 
       <TouchableOpacity
-        onPress={() => navigation.navigate(navigationStrings.FORGET_PASSWORD)}
+      onPress={()=>navigation.navigate(navigationStrings.PHONE_SIGNUP)}
         activeOpacity={0.5}
-        style={{ alignItems: "flex-end", marginTop: 5 }}>
-        <Text style={{ color: colors.red, fontFamily: fontFamily.BarlowSemiBold }}>ForgetPassword?</Text>
+        style={{ marginTop: 5 }}>
+        <Text style={{ color: colors.red, 
+          fontFamily: fontFamily.BarlowSemiBold }}>Signup using Phone NUmber</Text>
       </TouchableOpacity>
       <Button
         onPress={register}
         ButtonTxt={"Proceed"} />
 
       <View style={styles.socialstyle}>
-        <Text style={styles.socialtxt}>Login With Social</Text>
+        <Text style={styles.socialtxt}>SignUp With Social</Text>
       </View>
       <Button
         source={imagePath.facebook_icon}
@@ -104,12 +105,12 @@ const EmailLogin = ({ navigation }) => {
         ButtonTxt={"Sign in with Google"} />
 
       <View style={styles.accountstyle}>
-        <Text style={styles.accountxt}>Don't have an account?</Text>
+        <Text style={styles.accountxt}>Already have an account?</Text>
 
         <TouchableOpacity 
-        onPress={()=>navigation.navigate(navigationStrings.EMAIL_SIGNUP)}
+        onPress={()=>navigation.navigate(navigationStrings.EMAIL_LOGIN)}
         activeOpacity={0.5}>
-          <Text style={styles.signuptxt}>Sign up</Text>
+          <Text style={styles.signuptxt}>Login</Text>
         </TouchableOpacity>
       </View>
     </WrapperContainer>

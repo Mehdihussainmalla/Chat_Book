@@ -170,20 +170,6 @@ const id=data?.id;
                     inputview={styles.emailinput}
                     placeHolder={"forexample@gmail.com"} />
 
-                {/* <View style={styles.profilelabel}>
-                        <Text style={styles.profiletxt2}>PROFILE</Text>
-                    </View> */}
-                {/* <View style={styles.privatepublicview}>
-                        <View style={styles.radiostyle}>
-                            <Image source={imagePath.Radio_icon} />
-                            <Text style={styles.radiotxt}>Public</Text>
-                        </View>
-
-                        <View style={styles.publicstyle}>
-                            <Image source={imagePath.Radio_icon} />
-                            <Text style={styles.publictxt}>Private</Text>
-                        </View>
-                    </View> */}
                 <View style={styles.biolabel}>
                     <Text>ABOUT YOURSELF</Text>
                 </View>

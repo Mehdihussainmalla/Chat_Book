@@ -7,6 +7,8 @@ export default {
     SET_PASSWORD: "Set Password",
     PHONE_OTP: "Phone otp",
     PROFILE: "Profile",
-    ACCOUNT_CREATED: "Account Created"
+    ACCOUNT_CREATED: "Account Created",
+    EMAIL_SIGNUP: "Email Signup",
+    PHONE_SIGNUP: "Phone Signup"
 
 }

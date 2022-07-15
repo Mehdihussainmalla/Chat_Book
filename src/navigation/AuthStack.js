@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { AccountCreated, EmailLogin, EmailOtp, ForgetPassword, PhoneLogin, PhoneOtp, Profile, SetPassword } from '../Screens'
+import { AccountCreated, EmailLogin, EmailOtp, EmailSignUp, ForgetPassword, PhoneLogin, PhoneOtp, PhoneSignUp, Profile, SetPassword } from '../Screens'
 import navigationStrings from './navigationStrings'
 
 const AuthStack = (Stack) => {
@@ -15,6 +15,16 @@ const AuthStack = (Stack) => {
                     options={{ headerShown: false }}
                     component={EmailLogin}
                     name={navigationStrings.EMAIL_LOGIN} />
+
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    component={EmailSignUp}
+                    name={navigationStrings.EMAIL_SIGNUP} />
+
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    component={PhoneSignUp}
+                    name={navigationStrings.PHONE_SIGNUP} />
                 <Stack.Screen
                     options={{ headerShown: false }}
                     component={SetPassword}
