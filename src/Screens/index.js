@@ -10,4 +10,5 @@ export { default as PhoneSignUp } from "./PhoneSignUp/PhoneSignUp";
 export { default as EmailSignUp } from "./EmailSignUp/EmailSignUp";
 //..........main screen...........//
 export { default as HomeScreen } from "./HomeScreen/HomeScreen";
+export { default as AddPost } from "./AddPost/AddPost";
 

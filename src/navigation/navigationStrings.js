@@ -9,6 +9,8 @@ export default {
     PROFILE: "Profile",
     ACCOUNT_CREATED: "Account Created",
     EMAIL_SIGNUP: "Email Signup",
-    PHONE_SIGNUP: "Phone Signup"
+    PHONE_SIGNUP: "Phone Signup",
+    TABSTACK: "TabStack",
+    ADD_POST: "Add Post"
 
 }
