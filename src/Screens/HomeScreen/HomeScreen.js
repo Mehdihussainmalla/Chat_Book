@@ -61,7 +61,8 @@ const HomeScreen = ({ navigation }) => {
                 style={{ marginTop: 5 }}
                 source={imagePath.HamBurger} />
             </TouchableOpacity>
-            <Text style={{ fontSize: 16, paddingLeft: 100, marginTop: 8, fontFamily: fontFamily.BarlowSemiBold }}>Home</Text>
+            <Text style={{ fontSize: 16, paddingLeft: 100, marginTop: 8,
+               fontFamily: fontFamily.BarlowSemiBold }}>Home</Text>
           </View>
           <TouchableOpacity style={{ marginTop: 10 }} >
             <Image source={imagePath.Radio_icon} />
