@@ -18,20 +18,21 @@ const PhoneOtp = ({ navigation, route }) => {
   const userCheck = route?.params?.login;
   const otp = details?.otp;
   const id = details?.id;
-  // console.log(data, "dataa")
+  const email = details?.email;
   const [code, setCode] = useState();
 
   const verifyOtp = async () => {
     let apiData = {
+
       otp: code,
       id: id
     }
-    console.log(apiData, "apiData")
+    //console.log(apiData, "apiData")
     try {
       const res = await actions.verifyOtp(apiData)
       // console.log(res, "res>>>")
       if (userCheck == "login") {
-        saveUserData(apiData)
+        saveUserData(data)
       }
       else {
         navigation.navigate(navigationStrings.PROFILE, { data: res })
@@ -42,19 +43,27 @@ const PhoneOtp = ({ navigation, route }) => {
   }
 
   const resendOtp = async () => {
-    let apiData = {
-      id: id,
+    let apiData;
+
+    if (email) {
+      apiData = {
+        type: "1",
+        id: id,
+      }
     }
-    console.log(apiData, "data from resend")
+    else {
+      apiData = {
+        type: "2",
+        id: id,
+      }
+    }
     const res = await actions.resendOtp(apiData)
-    console.log(res, "res>>>>>>>>")
     try {
 
     } catch (error) {
       console.log(error, "error")
 
     }
-
   }
   return (
     <WrapperContainer>
@@ -107,6 +116,7 @@ const PhoneOtp = ({ navigation, route }) => {
             }}>Resend code</Text>
           </TouchableOpacity>
         </View>
+        <Text>{code}</Text>
       </View>
 
       <Button

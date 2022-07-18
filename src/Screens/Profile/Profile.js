@@ -9,10 +9,13 @@ import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
+import { useSelector } from 'react-redux'
 const Profile = ({ navigation, route }) => {
-    const data = route?.params?.data?.data;
-    const tokenNumber = data.token;
-    // console.log(token, "data is>>>")
+    //const datass = useSelector(state=>state?.auth?.userData);
+    // console.log(datass,"dataaa>>>>>")
+     const data = route?.params;
+     const tokenNumber = data.token;
+    console.log(token, "data is>>>")
     const id = data?.id;
     const [state, setState] = useState({
         email: "",
@@ -33,12 +36,6 @@ const Profile = ({ navigation, route }) => {
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
-
-    const onChangeTextResult = (key, value) => {
-        //  console.log(key, value, "key");
-        updateState({ [key]: value })
-    }
-
     const profileUpdate = async () => {
 
         let formData = new FormData();
@@ -52,7 +49,7 @@ const Profile = ({ navigation, route }) => {
             formData.append('about_us', about_us),
             formData.append('gender', gender),
             formData.append('country_code', country_code)
-        formData.append('image_url', image_url);
+            formData.append('image_url', image_url);
         // {
         //     uri: image_url,
         //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
@@ -61,16 +58,12 @@ const Profile = ({ navigation, route }) => {
         console.log(formData, "formdata >>>")
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
-            // console.log("response after actions>>>>", res)
-            navigation.navigate(navigationStrings.ACCOUNT_CREATED,{data:res})
+       navigation.navigate(navigationStrings.ACCOUNT_CREATED,{data:res})
 
         }).catch((error) => {
             console.log(error, "error occurred")
         })
-
-
     }
-
     //........image picker...........//
     const cameraClick = () => {
         ImagePicker.openCamera({
@@ -80,9 +73,8 @@ const Profile = ({ navigation, route }) => {
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === "ios" ? image?.sourceURL : image?.path;
-            console.log(imageUri, "imageuri is >>>");
-            // onChangeTextResult("image_url", imageUri);
-            // updateState({ image_url: imageUri });
+            //console.log(imageUri, "imageuri is >>>");
+            updateState({ image_url: imageUri });
         });
 
     }
@@ -112,9 +104,8 @@ const Profile = ({ navigation, route }) => {
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
-            onChangeTextResult("image_url", imageUri);
-            // updateState({ image_url: imageUri })
-            console.log(image_url, " image is")
+             updateState({ image_url: imageUri })
+            //console.log(image_url, " image is")
         });
     }
     return (

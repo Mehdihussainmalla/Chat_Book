@@ -6,7 +6,7 @@ const { dispatch } = store;
 import { REGISTER, RESEND_OTP, VERIFY_OTP, UPDATE_PROFILE, LOGIN } from "../../config/urls";
 
 export const saveUserData = (data) => {
-  // console.log(data, "data>>>>>>>>>>>")
+  console.log(data, "data>>>>>>>>>>>sdsdsds")
   dispatch({
     type: types.LOGIN,
     payload: data

@@ -80,8 +80,8 @@ const TabStack = () => {
                     }
 
                 }}
-                name={navigationStrings.ADD_POST}
-                component={AddPost}
+                name={navigationStrings.PROFILE}
+                component={Profile}
             />
             <Tab.Screen
                 options={{ 
