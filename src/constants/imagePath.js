@@ -12,6 +12,8 @@ export default {
     share_icon: require("../assets/images/share-icon.png"),
     post_image: require("../assets/images/postimage.png"),
     post_image2: require("../assets/images/post2.png"),
-    delete_icon: require("../assets/images/ic_crss.png")
+    delete_icon: require("../assets/images/ic_crss.png"),
+    home_icon: require("../assets/images/ic_home.png"),
+    profile_icon: require("../assets/images/Profile.png")
 
 }

@@ -28,7 +28,7 @@ const TabStack = () => {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <Image style={{ tintColor: focused ? colors.red : colors.black }}
-                                source={imagePath.Radio_icon} />
+                                source={imagePath.home_icon} />
                         )
                     }
 
@@ -41,7 +41,7 @@ const TabStack = () => {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <Image style={{ tintColor: focused ? colors.red : colors.black }}
-                                source={imagePath.Radio_icon} />
+                                source={imagePath.profile_icon} />
                         )
                     }
 
