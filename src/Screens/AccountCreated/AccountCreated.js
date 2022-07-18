@@ -6,8 +6,15 @@ import fontFamily from '../../styles/fontFamily'
 import { textScale } from '../../styles/responsiveSize'
 import Button from '../../Components/Button'
 import navigationStrings from '../../navigation/navigationStrings'
+import actions from '../../Redux/actions'
 
-const AccountCreated = ({ navigation }) => {
+const AccountCreated = ({ navigation, route }) => {
+    const response = route?.params?.data;
+    // console.log(response, "response");
+
+    const changeState = () => {
+        actions.changeState(response)
+    }
     return (
         <WrapperContainer>
             <View style={{ flex: 1 }}>
@@ -19,7 +26,7 @@ const AccountCreated = ({ navigation }) => {
                 </View>
             </View>
             <Button
-                onPress={() => navigation.navigate(navigationStrings.HOMESCREEN)}
+                 onPress={changeState}
                 ButtonTxt={"Done"} />
 
         </WrapperContainer>

@@ -62,7 +62,7 @@ const Profile = ({ navigation, route }) => {
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
             // console.log("response after actions>>>>", res)
-            navigation.navigate(navigationStrings.ACCOUNT_CREATED)
+            navigation.navigate(navigationStrings.ACCOUNT_CREATED,{data:res})
 
         }).catch((error) => {
             console.log(error, "error occurred")

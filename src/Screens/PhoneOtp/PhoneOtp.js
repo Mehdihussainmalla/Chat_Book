@@ -9,38 +9,45 @@ import Button from '../../Components/Button'
 import imagePath from '../../constants/imagePath'
 import navigationStrings from '../../navigation/navigationStrings'
 import actions from '../../Redux/actions'
+import { saveUserData } from '../../Redux/actions/auth'
 import { setUserData } from '../../utils/utils'
+
 const PhoneOtp = ({ navigation, route }) => {
-  const data = route?.params?.data?.data;
-  const otp = data?.otp;
-  const id = data?.id;
-  console.log(otp, "dataa")
+  const data = route?.params?.data;
+  const details = data?.data;
+  const userCheck = route?.params?.login;
+  const otp = details?.otp;
+  const id = details?.id;
+  // console.log(data, "dataa")
   const [code, setCode] = useState();
 
   const verifyOtp = async () => {
     let apiData = {
       otp: code,
       id: id
-    } 
+    }
     console.log(apiData, "apiData")
     try {
       const res = await actions.verifyOtp(apiData)
-      console.log(res, "res>>>")
-      navigation.navigate(navigationStrings.PROFILE, { data: res })
-
+      // console.log(res, "res>>>")
+      if (userCheck == "login") {
+        saveUserData(apiData)
+      }
+      else {
+        navigation.navigate(navigationStrings.PROFILE, { data: res })
+      }
     } catch (error) {
       console.log(error, "error")
     }
   }
 
-
   const resendOtp = async () => {
     let apiData = {
       id: id,
     }
-    console.log(apiData,"data from resend")
+    console.log(apiData, "data from resend")
     const res = await actions.resendOtp(apiData)
-    console.log(res,"res>>>>>>>>")
+    console.log(res, "res>>>>>>>>")
     try {
 
     } catch (error) {
