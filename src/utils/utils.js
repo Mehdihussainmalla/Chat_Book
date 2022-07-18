@@ -8,17 +8,16 @@ const { dispatch } = store;
 
 export async function getHeaders() {
 	let loginUser = await AsyncStorage.getItem('userData');
-	console.log('loginuser',loginUser)
+	// console.log('loginuser',loginUser)
 	if (loginUser) {
 		loginUser = JSON.parse(loginUser);
-		 console.log(loginUser.accessToken, 'header')
+		//  console.log(loginUser.token, 'header')
 		return {
-			authorization: `Bearer ${loginUser?.access_token}`,
+			authorization: `Bearer ${loginUser?.token}`,
 		};
 	}
 	return {};
 }
-
 
 export async function apiReq(
 	endPoint,
@@ -155,7 +154,7 @@ export function saveShortCodeData(data) {
 	return AsyncStorage.setItem('saveShortCode', data);
 }
 
-export async function getUserData() {
+export async function getUserData() { 
 	return new Promise((resolve, reject) => {
 		AsyncStorage.getItem('userData').then(data => {
 			resolve(JSON.parse(data));

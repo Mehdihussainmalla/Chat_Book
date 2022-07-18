@@ -11,4 +11,6 @@ export { default as EmailSignUp } from "./EmailSignUp/EmailSignUp";
 //..........main screen...........//
 export { default as HomeScreen } from "./HomeScreen/HomeScreen";
 export { default as AddPost } from "./AddPost/AddPost";
+export { default as SearchScreen } from "./Search/Search";
+export {default as Alerts} from "./Alerts/Alerts";
 

@@ -1,4 +1,4 @@
-import { clearUserData, removeData, removeItem, } from "../../utils/utils";
+import {  removeData, } from "../../utils/utils";
 import types from "../types";
 const initialState = {
     userData: {},

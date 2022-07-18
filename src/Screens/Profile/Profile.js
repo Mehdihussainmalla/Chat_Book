@@ -9,9 +9,11 @@ import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
-const Profile = ({ navigation ,route}) => {
-const data = route?.params?.data?.data;
-const id=data?.id;
+const Profile = ({ navigation, route }) => {
+    const data = route?.params?.data?.data;
+    const tokenNumber = data.token;
+    // console.log(token, "data is>>>")
+    const id = data?.id;
     const [state, setState] = useState({
         email: "",
         phone_number: "",
@@ -21,25 +23,27 @@ const id=data?.id;
         username: "",
         gender: "male",
         about_us: "",
-        name: ""
+        name: "",
+        token:tokenNumber,
     })
 
     const { email, phone_number, country_code, image_url,
         dob, username, gender, about_us,
-        name } = state;
+        name,token } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
 
     const onChangeTextResult = (key, value) => {
         //  console.log(key, value, "key");
-         updateState({ [key]: value })
+        updateState({ [key]: value })
     }
 
     const profileUpdate = async () => {
 
         let formData = new FormData();
-            formData.append('id',id),
+            // formData.append('Token', token),
+            formData.append('id', id),
             formData.append('username', username),
             formData.append('dob', dob),
             formData.append('phone_number', phone_number),
@@ -48,16 +52,16 @@ const id=data?.id;
             formData.append('about_us', about_us),
             formData.append('gender', gender),
             formData.append('country_code', country_code)
-            formData.append('image_url', image_url);
+        formData.append('image_url', image_url);
         // {
         //     uri: image_url,
         //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
         //     type: 'image/jpeg',
         // });
         console.log(formData, "formdata >>>")
-         let header = { "Content-Type": "multipart/form-data" }
+        let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
-            console.log("response after actions>>>>", res)
+            // console.log("response after actions>>>>", res)
             navigation.navigate(navigationStrings.ACCOUNT_CREATED)
 
         }).catch((error) => {
@@ -82,7 +86,7 @@ const id=data?.id;
         });
 
     }
-   
+
     const onSelectImage = () => {
 
         Alert.alert(
@@ -114,7 +118,7 @@ const id=data?.id;
         });
     }
     return (
-            <WrapperContainer>
+        <WrapperContainer>
             {/* <ScrollView showsVerticalScrollIndicator={false}> */}
             <View style={{ flex: 1 }}>
 
@@ -127,7 +131,7 @@ const id=data?.id;
                     source={{ uri: image_url }} />
                 {/* </View> */}
                 <TouchableOpacity
-                   onPress={onSelectImage}
+                    onPress={onSelectImage}
                     style={styles.editstyle}>
                     <Text style={styles.profiletxt}>Edit Profile</Text>
                 </TouchableOpacity>

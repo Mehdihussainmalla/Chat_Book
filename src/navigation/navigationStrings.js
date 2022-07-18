@@ -1,5 +1,5 @@
 export default {
-    HOMESCREEN: "Home Screen",
+    HOMESCREEN: "Home",
     PHONE_LOGIN: "Phone Login",
     EMAIL_LOGIN: "Email Login",
     EMAIL_OTP: "Email otp",
@@ -11,6 +11,9 @@ export default {
     EMAIL_SIGNUP: "Email Signup",
     PHONE_SIGNUP: "Phone Signup",
     TABSTACK: "TabStack",
-    ADD_POST: "Add Post"
+    ADD_POST: "Add Post",
+    NOTIFICATIONS: "Notifications",
+    SEARCH_SCREEN: "Search",
+    ALERTS_SCREEN:"Alerts"
 
 }

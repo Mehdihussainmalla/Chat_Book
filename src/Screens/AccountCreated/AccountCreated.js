@@ -5,8 +5,9 @@ import imagePath from '../../constants/imagePath'
 import fontFamily from '../../styles/fontFamily'
 import { textScale } from '../../styles/responsiveSize'
 import Button from '../../Components/Button'
+import navigationStrings from '../../navigation/navigationStrings'
 
-const AccountCreated = () => {
+const AccountCreated = ({ navigation }) => {
     return (
         <WrapperContainer>
             <View style={{ flex: 1 }}>
@@ -18,6 +19,7 @@ const AccountCreated = () => {
                 </View>
             </View>
             <Button
+                onPress={() => navigation.navigate(navigationStrings.HOMESCREEN)}
                 ButtonTxt={"Done"} />
 
         </WrapperContainer>

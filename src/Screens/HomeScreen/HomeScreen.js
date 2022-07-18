@@ -85,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
         <ProfileComp />
 
         <TouchableOpacity
-          // onPress={signOut}
+           onPress={signOut}
           style={{ marginTop: 5 }}
         >
           <Text>HomeScreen</Text>

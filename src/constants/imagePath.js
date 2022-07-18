@@ -14,6 +14,9 @@ export default {
     post_image2: require("../assets/images/post2.png"),
     delete_icon: require("../assets/images/ic_crss.png"),
     home_icon: require("../assets/images/ic_home.png"),
-    profile_icon: require("../assets/images/Profile.png")
+    profile_icon: require("../assets/images/Profile.png"),
+    notification_icon: require("../assets/images/notifications.png"),
+    search_icon: require("../assets/images/search-icon.png"),
+    add_icon: require("../assets/images/addicon.png")
 
 }
