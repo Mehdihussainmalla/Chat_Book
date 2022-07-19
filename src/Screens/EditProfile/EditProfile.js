@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet,Image,TouchableOpacity,ScrollView } from 'react-native';
+import React, { Component, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import Header from '../../Components/Header';
 import TextInputComp from '../../Components/TextInputs';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -9,34 +9,58 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
 import { useSelector } from 'react-redux';
+import { saveUserData } from '../../Redux/actions/auth';
 
-const EditProfile = () => {
-const userData= useSelector(state=>state?.auth?.userData);
-const emailid=userData?.data.email;
-console.log(emailid,"userdata is")
+const EditProfile = ({ navigation }) => {
+    const userData = useSelector(state => state?.auth?.userData?.data);
+    const emailid = userData?.email;
+    const dateOfBirth = userData?.dob;
+    const image = userData?.profile;
+    const phone = userData.phone_number;
+    const user_name = userData.username;
+    const aboutus = userData.about_us;
+    const Name = userData.name;
+    console.log(userData, "userdata is")
     const [state, setState] = useState({
-        email: "",
-        phone_number: "",
+        email: '',
+        phone_number: '',
         country_code: "+91",
-        image_url: "",
-        dob: "",
-        username: "",
+        image_url: image_url,
+        dob: '',
+        username: '',
         gender: "male",
         about_us: "",
         name: "",
-        token: "",
     })
 
     const { email, phone_number, country_code, image_url,
         dob, username, gender, about_us,
-        name, token } = state;
+        name, } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
+
+    useEffect(() => {
+
+        updateState({
+            email: emailid,
+            about_us: aboutus,
+            username: user_name,
+            phone_number: phone,
+            image_url: image,
+            dob: dateOfBirth,
+            name: Name,
+        }
+        )
+        console.log(image_url, "checkkkk image")
+        // //    setCountryCode(userData?.phone_code)
+        // //   setCountryFlag(userData?.country_code)
+
+    }, [userData])
 
     const profileUpdate = async () => {
 
         let formData = new FormData();
-            formData.append('username', username),
+        formData.append('username', username),
             formData.append('dob', dob),
             formData.append('phone_number', phone_number),
             formData.append('email', email),
@@ -46,15 +70,15 @@ console.log(emailid,"userdata is")
             formData.append('country_code', country_code)
         formData.append('image_url', image_url);
         // {
-        //     uri: image_url,
+        //     uri: image,  
         //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
         //     type: 'image/jpeg',
         // });
-        // console.log(formData, "formdata >>>")
+        //console.log(formData, "formdata >>>")
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
-            navigation.navigate(navigationStrings.ACCOUNT_CREATED, { data: res })
-
+            saveUserData(res)
+            navigation.navigate(navigationStrings.HOMESCREEN)
         }).catch((error) => {
             console.log(error, "error occurred")
         })
@@ -100,13 +124,14 @@ console.log(emailid,"userdata is")
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
+            //console.log(imageUri,"image++++++++")
             updateState({ image_url: imageUri })
-            //console.log(image_url, " image is")
+            // console.log(image_url, " image is")
         });
     }
     return (
         <WrapperContainer>
-          <ScrollView showsVerticalScrollIndicator={false}> 
+            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
             <View style={{ flex: 1 }}>
 
                 <Header
@@ -127,10 +152,20 @@ console.log(emailid,"userdata is")
                     <Text style={styles.usertxt}>USERNAME</Text>
                 </View>
                 <TextInputComp
-                    value={emailid}
+                    value={username}
                     onChangeText={(username) => updateState({ username })}
                     inputview={styles.userinput}
                     placeHolder={"Full Name"} />
+
+
+                <View style={styles.biolabel}>
+                    <Text>NAME</Text>
+                </View>
+                <TextInputComp
+                    value={name}
+                    inputview={styles.aboutusinput}
+                    onChangeText={(name) => updateState({ name })}
+                    placeHolder="enter your name" />
 
                 <View style={styles.doblabel}>
                     <Text style={styles.dobtxt}>D.O.B</Text>
@@ -161,24 +196,16 @@ console.log(emailid,"userdata is")
                     placeHolder={"forexample@gmail.com"} />
 
                 <View style={styles.biolabel}>
-                    <Text>ABOUT YOURSELF</Text>
+                    <Text style={styles.emailtxt}>ABOUT US</Text>
                 </View>
                 <TextInputComp
                     value={about_us}
                     onChangeText={(about_us) => updateState({ about_us })}
                     inputview={styles.aboutusinput}
                     placeHolder={"about yourself"} />
-                <View style={styles.biolabel}>
-                    <Text>NAME</Text>
-                </View>
-                <TextInputComp
-                    value={name}
-                    inputview={styles.aboutusinput}
-                    onChangeText={(name) => updateState({ name })}
-                    placeHolder="enter your name" />
 
             </View>
-            </ScrollView> 
+            {/* </ScrollView> */}
             <Button
                 onPress={profileUpdate}
                 ButtonTxt={"Proceed"} />

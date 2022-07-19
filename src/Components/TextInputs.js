@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
     inputStyle: {
         padding: moderateScale(10),
         color: colors.black,
-        fontFamily: fontFamily.BarlowBold
+        fontFamily: fontFamily.BarlowMedium
     }
 })

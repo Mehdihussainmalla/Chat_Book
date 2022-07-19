@@ -102,7 +102,11 @@ const PhoneOtp = ({ navigation, route }) => {
           />
         </View>
         <View style={{ marginTop: 20 }}>
-          <Text style={{ fontFamily: fontFamily.BarlowBold }}>We have sent you the one time password to your Phone Number</Text>
+          <Text style={{ fontFamily: fontFamily.BarlowBold }}>We have sent you the one time password on your email address</Text>
+        </View>
+        <View style={{ flexDirection: "row", }}>
+          <Text style={{ fontSize: textScale(14) }}>your otp is:- </Text>
+          <Text style={{ fontSize: textScale(14), color: "green" }}>{otp}</Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
           <Text style={{ fontFamily: fontFamily.BarlowSemiBold, }}>Didn't received OTP code?</Text>
@@ -115,7 +119,6 @@ const PhoneOtp = ({ navigation, route }) => {
             }}>Resend code</Text>
           </TouchableOpacity>
         </View>
-        <Text>{code}</Text>
       </View>
 
       <Button
