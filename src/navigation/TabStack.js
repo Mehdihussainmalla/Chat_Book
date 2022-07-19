@@ -3,7 +3,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import navigationStrings from './navigationStrings';
 import HomeScreen from '../Screens/HomeScreen/HomeScreen';
-import { AddPost, Alerts, Notifications, Profile, SearchScreen } from '../Screens';
+import { AddPost, Alerts, EditProfile, Notifications, Profile, SearchScreen } from '../Screens';
 import { moderateScale, moderateScaleVertical } from '../styles/responsiveSize';
 import colors from '../styles/colors';
 import imagePath from '../constants/imagePath';
@@ -80,8 +80,8 @@ const TabStack = () => {
                     }
 
                 }}
-                name={navigationStrings.PROFILE}
-                component={Profile}
+                name={navigationStrings.EDIT_PROFILE}
+                component={EditProfile}
             />
             <Tab.Screen
                 options={{ 

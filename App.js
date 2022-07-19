@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
 import { Provider } from "react-redux"
 import Routes from "./src/navigation/Routes";
@@ -7,15 +6,15 @@ import actions from './src/Redux/actions';
 import { getItem, setLogin } from './src/utils/utils';
 const App = () => {
 
-//   useEffect(() => {
+  useEffect(() => {
 
 
-//     setLogin().then((res) => {
-//       console.log(res, "resssss")
-//       actions.saveUserData(res)
-//     })
+    setLogin().then((res) => {
+      console.log(res, "resssss")
+      actions.saveUserData(res)
+    })
   
-// }, [])
+}, [])
 return (
   <>
     <Provider store={store} >

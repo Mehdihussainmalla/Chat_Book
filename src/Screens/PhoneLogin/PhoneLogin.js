@@ -8,6 +8,7 @@ import navigationStrings from '../../navigation/navigationStrings'
 import imagePath from '../../constants/imagePath'
 import actions from '../../Redux/actions'
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
+import { saveUserData } from '../../Redux/actions/auth'
 const PhoneLogin = ({ navigation }) => {
 
     const [state, setState] = useState({
@@ -25,7 +26,7 @@ const PhoneLogin = ({ navigation }) => {
         }
         try {
             const res = await actions.Login(apiData).then((res) => {
-                navigation.navigate(navigationStrings.PHONE_OTP, { data: res ,login:"login"})
+                navigation.navigate(navigationStrings.PHONE_OTP, { data: res, login: "login" })
             })
 
         } catch (error) {
@@ -74,7 +75,7 @@ const PhoneLogin = ({ navigation }) => {
         } else {
             const userData = result;
             console.log(userData)
-            //   saveUserData(userData);
+            saveUserData(userData)
 
         }
     }

@@ -6,7 +6,7 @@ export default {
     FORGET_PASSWORD: "Forget Password",
     SET_PASSWORD: "Set Password",
     PHONE_OTP: "Phone otp",
-    PROFILE: "Profile",
+    PROFILE: "Profile screen",
     ACCOUNT_CREATED: "Account Created",
     EMAIL_SIGNUP: "Email Signup",
     PHONE_SIGNUP: "Phone Signup",
@@ -14,6 +14,7 @@ export default {
     ADD_POST: "Add Post",
     NOTIFICATIONS: "Notifications",
     SEARCH_SCREEN: "Search",
-    ALERTS_SCREEN:"Alerts"
+    ALERTS_SCREEN:"Alerts",
+    EDIT_PROFILE:"Profile"
 
 }

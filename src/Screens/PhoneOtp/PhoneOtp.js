@@ -30,7 +30,6 @@ const PhoneOtp = ({ navigation, route }) => {
     //console.log(apiData, "apiData")
     try {
       const res = await actions.verifyOtp(apiData)
-      // console.log(res, "res>>>")
       if (userCheck == "login") {
         saveUserData(data)
       }
