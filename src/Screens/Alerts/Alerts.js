@@ -1,24 +1,20 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import WrapperContainer from '../../Components/WrapperContainer';
 
 // create a component
 const Alerts = () => {
     return (
-        <View style={styles.container}>
-            <Text>Alerts</Text>
-        </View>
+        <WrapperContainer>
+            <Text>alerts</Text>
+        </WrapperContainer>
     );
 };
 
 // define your styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
+
 });
 
 //make this component available to the app

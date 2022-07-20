@@ -13,6 +13,7 @@ import { saveUserData } from '../../Redux/actions/auth';
 import CountryCodePicker from '../../Components/CountryCodePicker';
 import { RNS3 } from 'react-native-upload-aws-s3';
 import { aws } from '../../config/keys';
+import { textScale } from '../../styles/responsiveSize';
 const EditProfile = ({ navigation }) => {
     const userData = useSelector(state => state?.auth?.userData?.data);
     const emailid = userData?.email;
@@ -212,8 +213,11 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.phonelabel}>
                     <Text style={styles.phonetxt}>PHONE NUMBER</Text>
                 </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flex: 0.4, marginVertical: 5 }}>
+                <View style={styles.codeview}>
+                    <View style={{ flex: 0.4,marginTop:4,
+                        paddingRight:10,
+                        marginRight:10,
+                        }}>
                         <CountryCodePicker
                             countryCode={countryCode}
                             countryFlag={countryFlag}
@@ -222,9 +226,9 @@ const EditProfile = ({ navigation }) => {
 
                         />
                     </View>
-                    <View style={{ flex: 0.6 }}>
+                    <View style={{ flex: 0.6}}>
                         <TextInputComp
-
+                            inputStyle={{fontSize:textScale(14)}}
                             value={phone_number}
                             onChangeText={(phone_number) => updateState({ phone_number })}
                             inputview={styles.phoneinput}

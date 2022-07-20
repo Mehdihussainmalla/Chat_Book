@@ -48,40 +48,32 @@ export const styles = StyleSheet.create({
     phonetxt:
         { fontFamily: fontFamily.BarlowSemiBold },
     phoneinput:
-        { marginTop: 5 },
+        { marginTop: 5},
     emaillabel:
         { marginTop: 5 },
+        biolabel:{
+            marginTop:5
+        },
     emailtxt:
         { fontFamily: fontFamily.BarlowSemiBold },
     emailinput:
-        { marginTop: 5 },
+        { marginTop: 8 },
     profilelabel:
         { marginTop: 5 },
     profiletxt2:
         { fontFamily: fontFamily.BarlowSemiBold },
-    privatepublicview:
-        { flexDirection: "row", justifyContent: "flex-start", marginTop: 5 },
-    radiostyle:
-        { flexDirection: "row", justifyContent: "flex-start" },
-    radiotxt:
-        { paddingLeft: 10, fontFamily: fontFamily.BarlowBold },
 
-    publicstyle:
-        { flexDirection: "row", justifyContent: "flex-start", marginLeft: 5 },
-    publictxt:
-        { paddingLeft: 10, fontFamily: fontFamily.BarlowBold },
-
-    biolabel: {
-        marginRight: 5
-    },
     aboutusinput:
 
     {
-        marginTop: 5
+        marginTop: 7
 
-    }
+    },
+    codeview: {
+        flexDirection: 'row',
+        justifyContent:"space-between",
+        marginVertical:moderateScale(10),
+    },  
 
-
-
-
+    
 })

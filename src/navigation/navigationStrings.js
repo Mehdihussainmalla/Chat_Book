@@ -14,7 +14,8 @@ export default {
     ADD_POST: "Add Post",
     NOTIFICATIONS: "Notifications",
     SEARCH_SCREEN: "Search",
-    ALERTS_SCREEN:"Alerts",
-    EDIT_PROFILE:"Profile"
+    ALERTS_SCREEN: "Alerts",
+    EDIT_PROFILE: "Profile",
+    MY_PROFILE: "My Profile"
 
 }

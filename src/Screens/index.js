@@ -14,4 +14,5 @@ export { default as AddPost } from "./AddPost/AddPost";
 export { default as SearchScreen } from "./Search/Search";
 export { default as Alerts } from "./Alerts/Alerts";
 export { default as EditProfile } from "./EditProfile/EditProfile";
+export { default as MyProfile } from "./MyProfile/MyProfile";
 

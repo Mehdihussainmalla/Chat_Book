@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, FlatList, View, Text, Image,TouchableOpacity } from "react-native";
+import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity } from "react-native";
 import imagePath from "../constants/imagePath";
 import fontFamily from "../styles/fontFamily";
 import { moderateScale, width } from "../styles/responsiveSize";
@@ -28,26 +28,27 @@ const homeRender = ({ item }) => {
                 <View style={{ flex: 2, }}>
                     <Image
                         style={{
-                            marginTop: 20, height: moderateScale(60), width: width / 6,
-                            borderRadius: 15,
-                            resizeMode: "stretch"
+                            marginTop: 20, height: width / 6.2, width: width / 6.2,
+                            borderRadius: width / 3,
                         }}
                         source={imagePath.post_image2} />
 
                 </View>
                 <View style={{ flex: 8, }}>
-                    <View style={{ flexDirection: "row",
-                     justifyContent: "space-between" }}>
-                       
-                            <Text style={{
-                                marginTop: 10,
-                                fontFamily: fontFamily.BarlowBold
-                            }}>{item.profileName}  <Text style={{
-                                fontFamily: fontFamily.BarlowBold,
-                                paddingLeft: 4
-                            }}> {item?.description}</Text> </Text>
-                        
-                        <TouchableOpacity style={{marginTop:20 }}>
+                    <View style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between"
+                    }}>
+
+                        <Text style={{
+                            marginTop: 22,
+                            fontFamily: fontFamily.BarlowBold
+                        }}>{item.profileName}  <Text style={{
+                            fontFamily: fontFamily.BarlowBold,
+                            paddingLeft: 4
+                        }}> {item?.description}</Text> </Text>
+
+                        <TouchableOpacity style={{ marginTop: 20 }}>
                             <Image source={imagePath.more_vert} />
                         </TouchableOpacity>
                     </View>

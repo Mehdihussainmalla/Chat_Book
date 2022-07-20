@@ -33,10 +33,12 @@ const ProfileComp = () => {
              borderWidth:0.5,borderRadius:5,padding:5,marginHorizontal:5}}>
                 <View style={{flex:3,flexDirection:"row",justifyContent:"space-between"}}>
                 <Image 
-                    style={{height:moderateScale(80),width:width/4,marginTop:10,
+                    style={{
+                    height:width/4.2,width:width/4.2,
+                    marginTop:4,
                     marginLeft:10,
-                    borderRadius:15,
-                    resizeMode:"stretch"}}
+                    borderRadius: width/2,
+                   }}
                     source={item?.image} /> 
                     <Image
                         style={{ bottom: 5, tintColor: "black" }}
@@ -50,7 +52,7 @@ const ProfileComp = () => {
                     style={{ backgroundColor: colors.main_Color,
                          alignSelf: "center" ,marginTop:4,borderWidth:0.5,borderRadius:5}}
                     activeOpacity={0.5}
-                // onPress={() => navigation.navigate(navigationStrings.PROFILE)}
+                    onPress={() => navigation.navigate(navigationStrings.MY_PROFILE)}
                 >
                     <Text style={{
                         alignSelf: "center",

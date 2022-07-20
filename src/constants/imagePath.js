@@ -16,7 +16,9 @@ export default {
     home_icon: require("../assets/images/ic_home.png"),
     profile_icon: require("../assets/images/Profile.png"),
     notification_icon: require("../assets/images/notifications.png"),
-    search_icon: require("../assets/images/search-icon.png"),
-    add_icon: require("../assets/images/addicon.png")
+    search_icon: require("../assets/images/ic_srch.png"),
+    add_icon: require("../assets/images/addicon.png"),
+    all_icon: require("../assets/images/allicon.png"),
+    video_icon: require("../assets/images/video-icon.png")
 
 }

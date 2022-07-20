@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { AccountCreated, EditProfile, HomeScreen, Profile } from '../Screens'
+import { AccountCreated, EditProfile, HomeScreen, MyProfile, Profile } from '../Screens'
 import navigationStrings from './navigationStrings'
 import TabStack from './TabStack'
 
@@ -13,8 +13,8 @@ const MainStack = (Stack) => {
 
                 <Stack.Screen component={TabStack}
                     name={navigationStrings.TABSTACK} />
-                {/* <Stack.Screen component={EditProfile}
-                    name={navigationStrings.EDIT_PROFILE} /> */}
+                <Stack.Screen component={Profile}
+                    name={navigationStrings.PROFILE} />
 
             </Stack.Navigator>
         </>
