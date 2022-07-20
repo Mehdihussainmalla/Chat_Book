@@ -6,3 +6,4 @@ export const RESEND_OTP = getApiUrl("/resend-otp");
 export const UPDATE_PROFILE = getApiUrl("/edit-profile")
 
 export const LOGIN = getApiUrl("/login");
+export const CREATE_URL = getApiUrl("/create_url");

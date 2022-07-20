@@ -10,7 +10,9 @@ import { styles } from './style';
 import actions from "../../Redux/actions";
 import { useSelector } from 'react-redux';
 import { saveUserData } from '../../Redux/actions/auth';
-
+import CountryCodePicker from '../../Components/CountryCodePicker';
+import { RNS3 } from 'react-native-upload-aws-s3';
+import { aws } from '../../config/keys';
 const EditProfile = ({ navigation }) => {
     const userData = useSelector(state => state?.auth?.userData?.data);
     const emailid = userData?.email;
@@ -21,10 +23,14 @@ const EditProfile = ({ navigation }) => {
     const aboutus = userData.about_us;
     const Name = userData.name;
     console.log(userData, "userdata is")
+
+
+    const [countryCode, setCountryCode] = useState('91');
+    const [countryFlag, setCountryFlag] = useState('IN');
     const [state, setState] = useState({
         email: '',
         phone_number: '',
-        country_code: "+91",
+        country_code: "",
         image_url: image_url,
         dob: '',
         username: '',
@@ -46,16 +52,18 @@ const EditProfile = ({ navigation }) => {
             about_us: aboutus,
             username: user_name,
             phone_number: phone,
-            image_url: image,
+            image_url: image_url,
             dob: dateOfBirth,
             name: Name,
+            country_code: countryCode,
+            countryFlag: countryFlag
         }
         )
-        console.log(image_url, "checkkkk image")
-        // //    setCountryCode(userData?.phone_code)
-        // //   setCountryFlag(userData?.country_code)
-
+        // console.log(image_url, "checkkkk image")
     }, [userData])
+
+
+
 
     const profileUpdate = async () => {
 
@@ -70,11 +78,12 @@ const EditProfile = ({ navigation }) => {
             formData.append('country_code', country_code)
         formData.append('image_url', image_url);
         // {
-        //     uri: image,  
+        //     uri: image_url,
         //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-        //     type: 'image/jpeg',
+        //     type: '1',
         // });
         //console.log(formData, "formdata >>>")
+
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
             saveUserData(res)
@@ -115,6 +124,8 @@ const EditProfile = ({ navigation }) => {
             { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
             ])
     }
+    //.............upload image at amazom s3 ........//
+
 
     const galleryClick = () => {
         ImagePicker.openPicker({
@@ -122,11 +133,33 @@ const EditProfile = ({ navigation }) => {
             height: 400,
             cropping: true
         }).then(image => {
-            console.log(image);
+            // console.log(image,"image+++++++")
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             //console.log(imageUri,"image++++++++")
             updateState({ image_url: imageUri })
-            // console.log(image_url, " image is")
+            //console.log(image_url, " image is")
+            // const file = {
+            //     uri: image,
+            //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            //     type: "image/jpeg"
+            // }
+
+            // const options = {
+            //     keyPrefix: aws.keyPrefix,
+            //     bucket: aws.bucket,
+            //     region: aws.region,
+            //     accessKey: aws.accessKey,
+            //     secretKey: aws.secretKey,
+            //     successActionStatus: 201
+            // }
+
+            // RNS3.put(file, options)
+            //     .then(response => {
+            //         console.log(response, "response++++")
+            //     }).catch((err) => {
+            //         console.log(err)
+            //     })
+
         });
     }
     return (
@@ -179,12 +212,25 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.phonelabel}>
                     <Text style={styles.phonetxt}>PHONE NUMBER</Text>
                 </View>
-                <TextInputComp
+                <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 0.4, marginVertical: 5 }}>
+                        <CountryCodePicker
+                            countryCode={countryCode}
+                            countryFlag={countryFlag}
+                            setCountryCode={setCountryCode}
+                            setCountryFlag={setCountryFlag}
 
-                    value={phone_number}
-                    onChangeText={(phone_number) => updateState({ phone_number })}
-                    inputview={styles.phoneinput}
-                    placeHolder={"+916005927575"} />
+                        />
+                    </View>
+                    <View style={{ flex: 0.6 }}>
+                        <TextInputComp
+
+                            value={phone_number}
+                            onChangeText={(phone_number) => updateState({ phone_number })}
+                            inputview={styles.phoneinput}
+                            placeHolder={"+916005927575"} />
+                    </View>
+                </View>
 
                 <View style={styles.emaillabel}>
                     <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
