@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         // marginHorizontal: moderateScale(10)
     },
     inputStyle: {
-        padding: moderateScale(10),
+        padding: moderateScale(15),
         color: colors.black,
         fontFamily: fontFamily.BarlowMedium
     }

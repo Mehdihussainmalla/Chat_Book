@@ -16,10 +16,10 @@ const EmailLogin = ({ navigation }) => {
 
     email: "",
     password: "",
-    device_token: ""
+
   })
 
-  const { email, password, device_token } = state;
+  const { email, password, } = state;
 
   const updateState = (data) => setState(state => ({ ...state, ...data }));
 

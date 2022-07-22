@@ -122,6 +122,7 @@ const PhoneLogin = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 0.8 }}>
                     <TextInputComp
+                        inputStyle={{ padding: 16.5, }}
                         value={phone_number}
                         onChangeText={(phone_number) => updateState({ phone_number })}
                         inputview={styles.inputstyle}

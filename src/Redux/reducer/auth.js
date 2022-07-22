@@ -9,7 +9,7 @@ const userStatus = (state = initialState, action) => {
     switch (action.type) {
         case types.LOGIN:
             const data = action.payload;
-            console.log(data, "data>>>>>>>>>>>")
+            // console.log(data, "data>>>>>>>>>>>")
             // setLogin(data)
 
             return {

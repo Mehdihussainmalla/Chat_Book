@@ -8,18 +8,25 @@ import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
+import CountryCodePicker from '../../Components/CountryCodePicker'
+import { moderateScale } from '../../styles/responsiveSize'
 
 const Profile = ({ navigation, route }) => {
 
-    const data = route?.params;
+    const data = route?.params?.data;
     const tokenNumber = data?.data?.token;
-    console.log(data, "data is>>>")
-    const id = data?.id;
+    const emailid = data.data.email;
+    const phone = data.data.phone_number;
+    //  console.log(phone, "data is>>>")
+    const [countryCode, setCountryCode] = useState('91');
+    const [countryFlag, setCountryFlag] = useState('IN');
+
     const [state, setState] = useState({
         email: "",
         phone_number: "",
-        country_code: "+91",
+        country_code: countryCode,
         image_url: "",
+        country_flag: countryFlag,
         dob: "",
         username: "",
         gender: "",
@@ -28,21 +35,25 @@ const Profile = ({ navigation, route }) => {
         token: tokenNumber,
     })
 
-    const { email, phone_number, country_code, image_url,
+    const { email, image_url,
         dob, username, gender, about_us,
-        name, token } = state;
+        name, phone_number, country_flag } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
-    // useEffect(()=>{
+    useEffect(() => {
+        updateState({
+            email: emailid,
+            phone_number: phone,
+        })
 
-    // },[])
-
+    }, [])
     const profileUpdate = async () => {
-
         let formData = new FormData();
 
         formData.append('id', id),
+            formData.append('phone_number', phone_number),
+            formData.append("country_flag", country_flag),
             formData.append('username', username),
             formData.append('dob', dob),
             formData.append('email', email),
@@ -115,12 +126,9 @@ const Profile = ({ navigation, route }) => {
 
                 <Header
                     isBackIcon={true} />
-                {/* <View style={styles.imgstyle}> */}
-
                 <Image
                     style={styles.img}
                     source={{ uri: image_url }} />
-                {/* </View> */}
                 <TouchableOpacity
                     onPress={onSelectImage}
                     style={styles.editstyle}>
@@ -155,14 +163,40 @@ const Profile = ({ navigation, route }) => {
                     inputview={styles.phoneinput}
                     placeHolder={"gender"} />
 
-                <View style={styles.emaillabel}>
-                    <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
-                </View>
-                <TextInputComp
-                    value={email}
-                    onChangeText={(email) => updateState({ email })}
-                    inputview={styles.emailinput}
-                    placeHolder={"forexample@gmail.com"} />
+                {!!emailid ?
+                    <View>
+
+                        <View style={styles.emaillabel}>
+                            <Text style={styles.emailtxt}>PHONE NUMBER</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginVertical: moderateScale(10) }}>
+                            <View style={{ flex: 0.4, marginTop: 5 }}>
+                                <CountryCodePicker
+                                    countryCode={countryCode}
+                                    countryFlag={countryFlag}
+                                    setCountryCode={setCountryCode}
+                                    setCountryFlag={setCountryFlag} />
+                            </View>
+                            <View style={{ flex: 0.6 }}>
+                                <TextInputComp
+                                    value={phone_number}
+                                    onChangeText={(phone_number) => updateState({ phone_number })}
+                                    inputview={styles.emailinput}
+                                    placeHolder={"phone number"} />
+                            </View>
+                        </View>
+
+                    </View>
+                    : <View>
+                        <View style={styles.emaillabel}>
+                            <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
+                        </View>
+                        <TextInputComp
+                            value={email}
+                            onChangeText={(email) => updateState({ email })}
+                            inputview={styles.emailinput}
+                            placeHolder={"forexample@gmail.com"} />
+                    </View>}
 
                 <View style={styles.biolabel}>
                     <Text>ABOUT YOURSELF</Text>

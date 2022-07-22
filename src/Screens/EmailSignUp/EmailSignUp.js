@@ -26,7 +26,7 @@ const EmailLogin = ({ navigation }) => {
 
   const register = async () => {
     let apiData = {
-      country_code:"91",
+      // country_code:"91",
       email: email,
       password: password,
       device_token: "abfhgfhgfgc"
@@ -35,7 +35,7 @@ const EmailLogin = ({ navigation }) => {
     // console.log(apiData, "api data is>>>")  
     try {
       const res = await actions.register(apiData)
-      console.log(res,"res+++++")
+      // console.log(res,"res+++++")
       const data = res;
       navigation.navigate(navigationStrings.PHONE_OTP, { data: data })
     } catch (error) {
@@ -71,11 +71,13 @@ const EmailLogin = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <TextInputComp
+
         value={email}
         onChangeText={(email) => updateState({ email })}
         inputview={styles.inputstyle}
         placeHolder={"Enter your email"} />
       <TextInputComp
+
         value={password}
         onChangeText={(password) => updateState({ password })}
         inputview={styles.inputstyle}

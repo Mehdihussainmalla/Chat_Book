@@ -63,10 +63,6 @@ const EditProfile = ({ navigation }) => {
         )
         // console.log(image_url, "checkkkk image")
     }, [userData])
-
-
-
-
     const profileUpdate = async () => {
 
         let formData = new FormData();
@@ -89,7 +85,7 @@ const EditProfile = ({ navigation }) => {
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
             saveUserData(res)
-             navigation.navigate(navigationStrings.HOMESCREEN)
+            navigation.navigate(navigationStrings.HOMESCREEN)
         }).catch((error) => {
             console.log(error, "error occurred")
         })
@@ -139,28 +135,28 @@ const EditProfile = ({ navigation }) => {
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             //console.log(imageUri,"image++++++++")
             updateState({ image_url: imageUri })
-            //console.log(image_url, " image is")
-            // const file = {
-            //     uri: image,
-            //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-            //     type: "image/jpeg"
-            // }
+            console.log(image_url, " image is")
+            const file = {
+                uri: image,
+                name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+                type: "image/jpeg"
+            }
 
-            // const options = {
-            //     keyPrefix: aws.keyPrefix,
-            //     bucket: aws.bucket,
-            //     region: aws.region,
-            //     accessKey: aws.accessKey,
-            //     secretKey: aws.secretKey,
-            //     successActionStatus: 201
-            // }
+            const options = {
+                keyPrefix: aws.keyPrefix,
+                bucket: aws.bucket,
+                region: aws.region,
+                accessKey: aws.accessKey,
+                secretKey: aws.secretKey,
+                successActionStatus: 201
+            }
 
-            // RNS3.put(file, options)
-            //     .then(response => {
-            //         console.log(response, "response++++")
-            //     }).catch((err) => {
-            //         console.log(err)
-            //     })
+            RNS3.put(file, options)
+                .then(response => {
+                    console.log(response, "response++++")
+                }).catch((err) => {
+                    console.log(err)
+                })
 
         });
     }
@@ -216,12 +212,9 @@ const EditProfile = ({ navigation }) => {
                 <TextInputComp
                     inputStyle={{ fontSize: textScale(14) }}
                     value={gender}
-                    onChangeText={(gender) => updateState({ phone_ngenderumber })}
+                    onChangeText={(gender) => updateState({ gender })}
                     inputview={styles.phoneinput}
                     placeHolder={"gender"} />
-
-
-
                 <View style={styles.emaillabel}>
                     <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
                 </View>
@@ -230,6 +223,7 @@ const EditProfile = ({ navigation }) => {
                     onChangeText={(email) => updateState({ email })}
                     inputview={styles.emailinput}
                     placeHolder={"forexample@gmail.com"} />
+
 
                 <View style={styles.biolabel}>
                     <Text style={styles.emailtxt}>ABOUT US</Text>

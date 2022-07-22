@@ -36,7 +36,7 @@ const PhoneLogin = ({ navigation }) => {
         console.log(apiData, "api data phone login is")
         try {
             const res = await actions.register(apiData);
-             console.log(res, "res>>>")
+            console.log(res, "res>>>")
             navigation.navigate(navigationStrings.PHONE_OTP, { data: res })
         } catch (error) {
             console.log(error, "error occurred")
@@ -54,7 +54,7 @@ const PhoneLogin = ({ navigation }) => {
             </View>
 
             <View style={styles.emailphone}>
-               <TouchableOpacity
+                <TouchableOpacity
                     onPress={() => navigation.navigate(navigationStrings.EMAIL_LOGIN)}
                     activeOpacity={0.5}
                     style={styles.emailview}>
@@ -65,59 +65,60 @@ const PhoneLogin = ({ navigation }) => {
                     <Text style={styles.phonetxt}>Phone</Text>
                 </View>
             </View>
-            <View style={{flexDirection: 'row',marginTop:moderateScale(18)}}>
-                <View style={{flex: 0.38,}}>
+            <View style={{ flexDirection: 'row', marginTop: moderateScale(18) }}>
+                <View style={{ flex: 0.38, }}>
                     <CountryCodePicker
                         countryCode={countryCode}
                         countryFlag={countryFlag}
                         setCountryCode={setCountryCode}
                         setCountryFlag={setCountryFlag}
                     />
-                    </View>
-                    <View style={{ flex: 0.8}}>
+                </View>
+                <View style={{ flex: 0.8, }}>
                     <TextInputComp
+                        inputStyle={{ padding: 16.5}}
                         value={phone_number}
                         onChangeText={(phone_number) => updateState({ phone_number })}
                         inputview={styles.inputstyle}
                         placeHolder={"Enter Phone Number"} />
-                        </View>
-
                 </View>
-                <View style={styles.descstyle}>
-                    <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
 
-                </View>
+            </View>
+            <View style={styles.descstyle}>
+                <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
+
+            </View>
+            <TouchableOpacity
+                onPress={() => navigation.navigate(navigationStrings.EMAIL_SIGNUP)}
+                activeOpacity={0.8}>
+                <Text style={styles.emailsignup}>SignUp using Email</Text>
+            </TouchableOpacity>
+
+            <Button
+                onPress={register}
+                ButtonTxt={"Proceed"} />
+
+            <View style={styles.socialstyle}>
+                <Text style={styles.socialtxt}>SignUp With Social</Text>
+            </View>
+            <Button
+                source={imagePath.facebook_icon}
+                ButtonTxt={"Sign in with Facebook"}
+            />
+
+            <Button
+                source={imagePath.google_icon}
+                ButtonTxt={"Sign in with Google"} />
+
+            <View style={styles.accountstyle}>
+                <Text style={styles.accountxt}>Already have an account?</Text>
+
                 <TouchableOpacity
-                    onPress={() => navigation.navigate(navigationStrings.EMAIL_SIGNUP)}
-                    activeOpacity={0.8}>
-                    <Text style={styles.emailsignup}>SignUp using Email</Text>
+                    onPress={() => navigation.navigate(navigationStrings.PHONE_LOGIN)}
+                    activeOpacity={0.5}>
+                    <Text style={styles.signuptxt}>Login</Text>
                 </TouchableOpacity>
-
-                <Button
-                    onPress={register}
-                    ButtonTxt={"Proceed"} />
-
-                <View style={styles.socialstyle}>
-                    <Text style={styles.socialtxt}>SignUp With Social</Text>
-                </View>
-                <Button
-                    source={imagePath.facebook_icon}
-                    ButtonTxt={"Sign in with Facebook"}
-                />
-
-                <Button
-                    source={imagePath.google_icon}
-                    ButtonTxt={"Sign in with Google"} />
-
-                <View style={styles.accountstyle}>
-                    <Text style={styles.accountxt}>Already have an account?</Text>
-
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate(navigationStrings.PHONE_LOGIN)}
-                        activeOpacity={0.5}>
-                        <Text style={styles.signuptxt}>Login</Text>
-                    </TouchableOpacity>
-                </View>
+            </View>
         </WrapperContainer>
 
     )

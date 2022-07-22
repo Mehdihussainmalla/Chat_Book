@@ -65,7 +65,7 @@ export const verifyOtp = async (data) => {
 export const resendOtp = (data) => {
   return new Promise((resolve, reject) => {
     apiPost(RESEND_OTP, data).then((res) => {
-      console.log(res, "res>>")
+      // console.log(res, "res>>")
       resolve(res)
     }).catch(error => {
       reject(error, "reject")
@@ -77,7 +77,7 @@ export const resendOtp = (data) => {
 export const editProfile = (data, header = {}) => {
   return new Promise((resolve, reject) => {
     apiPost(UPDATE_PROFILE, data, header).then((res) => {
-      console.log(res, "res>>>")
+      // console.log(res, "res>>>")
       resolve(res)
       // saveUserData(res.data)
     }).catch(error => {
