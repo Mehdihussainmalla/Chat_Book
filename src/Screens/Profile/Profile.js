@@ -17,7 +17,8 @@ const Profile = ({ navigation, route }) => {
     const tokenNumber = data?.data?.token;
     const emailid = data.data.email;
     const phone = data.data.phone_number;
-    //  console.log(phone, "data is>>>")
+    const id=data.data.id;
+    //  console.log(data, "data is>>>")
     const [countryCode, setCountryCode] = useState('91');
     const [countryFlag, setCountryFlag] = useState('IN');
 

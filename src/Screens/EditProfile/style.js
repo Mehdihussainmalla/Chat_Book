@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import colors from "../../styles/colors";
 import fontFamily from "../../styles/fontFamily";
-import { moderateScale, textScale } from "../../styles/responsiveSize";
+import { moderateScale, textScale, width } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
 
     imgstyle:
@@ -11,10 +11,11 @@ export const styles = StyleSheet.create({
     },
     img:
     {
-        height: "15%",
+        height: width/4,
         justifyContent: 'center',
         alignSelf: "center",
-        width: "40%"
+        width:width/4,
+        borderRadius:width/2,
     },
     editstyle:
     {

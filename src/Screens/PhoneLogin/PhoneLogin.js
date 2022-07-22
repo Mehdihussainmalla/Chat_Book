@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity,Platform } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Button from '../../Components/Button'
@@ -121,8 +121,9 @@ const PhoneLogin = ({ navigation }) => {
                     />
                 </View>
                 <View style={{ flex: 0.8 }}>
+                   
                     <TextInputComp
-                        inputStyle={{ padding: 16.5, }}
+                        inputStyle={{padding: Platform.OS === 'ios' ? 16.5 : null }}
                         value={phone_number}
                         onChangeText={(phone_number) => updateState({ phone_number })}
                         inputview={styles.inputstyle}

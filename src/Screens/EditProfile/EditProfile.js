@@ -32,18 +32,19 @@ const EditProfile = ({ navigation }) => {
         email: '',
         phone_number: '',
         country_code: countryCode,
-        image_url: image_url,
+        image_url: "",
         dob: '',
         username: '',
         gender: "male",
         about_us: "",
         name: "",
-        country_flag: countryFlag
+        country_flag: countryFlag,
+        // profile: profile,
     })
 
     const { email, phone_number, country_code, image_url,
         dob, username, gender, about_us,
-        name, country_flag } = state;
+        name, country_flag, profile } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
@@ -54,15 +55,17 @@ const EditProfile = ({ navigation }) => {
             about_us: aboutus,
             username: user_name,
             phone_number: phone,
-            image_url: image_url,
+            image_url: image,
             dob: dateOfBirth,
             name: Name,
             country_code: countryCode,
-            country_flag: country_flag
+            country_flag: country_flag,
+            // profile: profile,
         }
         )
-        // console.log(image_url, "checkkkk image")
+        //   console.log(image_url, "profile image")
     }, [userData])
+
     const profileUpdate = async () => {
 
         let formData = new FormData();
@@ -74,16 +77,17 @@ const EditProfile = ({ navigation }) => {
             formData.append('about_us', about_us),
             formData.append('gender', gender),
             formData.append('country_code', country_code)
-        formData.append('image_url', image_url);
+        formData.append('profile', image_url);
         // {
         //     uri: image_url,
         //     name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
         //     type: '1',
         // });
-        //console.log(formData, "formdata >>>")
+        // console.log(formData, "formdata >>>")
 
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
+            console.log(res, "res++++++")
             saveUserData(res)
             navigation.navigate(navigationStrings.HOMESCREEN)
         }).catch((error) => {
@@ -100,7 +104,8 @@ const EditProfile = ({ navigation }) => {
             console.log(image);
             const imageUri = Platform.OS === "ios" ? image?.sourceURL : image?.path;
             //console.log(imageUri, "imageuri is >>>");
-            updateState({ image_url: imageUri });
+            // updateState({ image_url: imageUri });
+
         });
 
     }
@@ -124,7 +129,6 @@ const EditProfile = ({ navigation }) => {
     }
     //.............upload image at amazom s3 ........//
 
-
     const galleryClick = () => {
         ImagePicker.openPicker({
             width: 300,
@@ -133,15 +137,15 @@ const EditProfile = ({ navigation }) => {
         }).then(image => {
             // console.log(image,"image+++++++")
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
-            //console.log(imageUri,"image++++++++")
-            updateState({ image_url: imageUri })
-            console.log(image_url, " image is")
+            // console.log(imageUri, "image++++++++")
+            // updateState({ image_url: imageUri })
+            // console.log(image_url, " image is")
             const file = {
-                uri: image,
+                uri: imageUri,
                 name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
                 type: "image/jpeg"
             }
-
+            // console.log(file,"file")
             const options = {
                 keyPrefix: aws.keyPrefix,
                 bucket: aws.bucket,
@@ -150,16 +154,20 @@ const EditProfile = ({ navigation }) => {
                 secretKey: aws.secretKey,
                 successActionStatus: 201
             }
+            //  console.log(options, "options areee+++++")
 
             RNS3.put(file, options)
                 .then(response => {
-                    console.log(response, "response++++")
-                }).catch((err) => {
+                    const image = response.body.postResponse.location;
+                    // console.log(response, "imageee+++++")
+                    updateState({ image_url: image })
+                }
+                ).catch((err) => {
                     console.log(err)
                 })
-
         });
     }
+    // console.log(image_url, "image+++++profile++++++++")
     return (
         <WrapperContainer>
             {/* <ScrollView showsVerticalScrollIndicator={false}> */}
@@ -180,6 +188,7 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.usernamelabel}>
                     <Text style={styles.usertxt}>USERNAME</Text>
                 </View>
+
                 <TextInputComp
                     value={username}
                     onChangeText={(username) => updateState({ username })}

@@ -19,6 +19,7 @@ const PhoneOtp = ({ navigation, route }) => {
   const otp = details?.otp;
   const id = details?.id;
   const email = details?.email;
+  console.log(otp)
   const [code, setCode] = useState();
   const [type, setType] = useState("1");
 
