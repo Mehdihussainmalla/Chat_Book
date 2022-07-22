@@ -24,7 +24,8 @@ export const styles = StyleSheet.create({
     emailphone:
     {
         flexDirection: "row",
-        borderWidth: 0.9
+        borderWidth: 0.9,
+        // borderRadius:10,
     },
     emailview:
     {
@@ -50,7 +51,7 @@ export const styles = StyleSheet.create({
     },
     inputstyle:
     {
-        marginTop: moderateScale(20)
+    //    marginTop: moderateScale(20)
     },
     descstyle:
     {

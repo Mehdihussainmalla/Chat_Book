@@ -88,6 +88,5 @@ export const editProfile = (data, header = {}) => {
 }
 
 export const changeState = (data) => {
-  // console.log(data,"save data is")
   saveUserData(data)
 }

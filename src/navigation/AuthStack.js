@@ -50,6 +50,7 @@ const AuthStack = (Stack) => {
                     options={{ headerShown: false }}
                     component={AccountCreated}
                     name={navigationStrings.ACCOUNT_CREATED} />
+                    
             </Stack.Navigator>
         </>
     )

@@ -19,6 +19,7 @@ export default {
     search_icon: require("../assets/images/ic_srch.png"),
     add_icon: require("../assets/images/addicon.png"),
     all_icon: require("../assets/images/allicon.png"),
-    video_icon: require("../assets/images/video-icon.png")
+    video_icon: require("../assets/images/video-icon.png"),
+    drop_down_icon: require("../assets/images/dropdown.png")
 
 }

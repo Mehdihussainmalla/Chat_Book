@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     },
     inputstyle:
     {
-        marginVertical: moderateScale(30)
+        // marginVertical: moderateScale(30)
     },
     descstyle:
     {

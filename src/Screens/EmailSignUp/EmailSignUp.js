@@ -10,7 +10,7 @@ import fontFamily from '../../styles/fontFamily'
 import imagePath from '../../constants/imagePath'
 import Header from '../../Components/Header'
 import actions from '../../Redux/actions'
-import axios from 'axios'
+
 const EmailLogin = ({ navigation }) => {
 
   const [state, setState] = useState({
@@ -26,6 +26,7 @@ const EmailLogin = ({ navigation }) => {
 
   const register = async () => {
     let apiData = {
+      country_code:"91",
       email: email,
       password: password,
       device_token: "abfhgfhgfgc"
@@ -34,9 +35,8 @@ const EmailLogin = ({ navigation }) => {
     // console.log(apiData, "api data is>>>")  
     try {
       const res = await actions.register(apiData)
-      // console.log(res, "res>>>>from email ")
-      // console.log(res, "ressssssssss>>>>>>>>")
-      const data =  res;
+      console.log(res,"res+++++")
+      const data = res;
       navigation.navigate(navigationStrings.PHONE_OTP, { data: data })
     } catch (error) {
       console.log(error, "error occurred")
@@ -82,11 +82,13 @@ const EmailLogin = ({ navigation }) => {
         placeHolder={"enter your password"} />
 
       <TouchableOpacity
-      onPress={()=>navigation.navigate(navigationStrings.PHONE_SIGNUP)}
+        onPress={() => navigation.navigate(navigationStrings.PHONE_SIGNUP)}
         activeOpacity={0.5}
         style={{ marginTop: 5 }}>
-        <Text style={{ color: colors.red, 
-          fontFamily: fontFamily.BarlowSemiBold }}>Signup using Phone NUmber</Text>
+        <Text style={{
+          color: colors.red,
+          fontFamily: fontFamily.BarlowSemiBold
+        }}>Signup using Phone NUmber</Text>
       </TouchableOpacity>
       <Button
         onPress={register}
@@ -107,9 +109,9 @@ const EmailLogin = ({ navigation }) => {
       <View style={styles.accountstyle}>
         <Text style={styles.accountxt}>Already have an account?</Text>
 
-        <TouchableOpacity 
-        onPress={()=>navigation.navigate(navigationStrings.EMAIL_LOGIN)}
-        activeOpacity={0.5}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(navigationStrings.EMAIL_LOGIN)}
+          activeOpacity={0.5}>
           <Text style={styles.signuptxt}>Login</Text>
         </TouchableOpacity>
       </View>

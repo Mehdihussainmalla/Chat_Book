@@ -31,18 +31,19 @@ const EditProfile = ({ navigation }) => {
     const [state, setState] = useState({
         email: '',
         phone_number: '',
-        country_code: "",
+        country_code: countryCode,
         image_url: image_url,
         dob: '',
         username: '',
         gender: "male",
         about_us: "",
         name: "",
+        country_flag: countryFlag
     })
 
     const { email, phone_number, country_code, image_url,
         dob, username, gender, about_us,
-        name, } = state;
+        name, country_flag } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
@@ -57,7 +58,7 @@ const EditProfile = ({ navigation }) => {
             dob: dateOfBirth,
             name: Name,
             country_code: countryCode,
-            countryFlag: countryFlag
+            country_flag: country_flag
         }
         )
         // console.log(image_url, "checkkkk image")
@@ -88,7 +89,7 @@ const EditProfile = ({ navigation }) => {
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
             saveUserData(res)
-            navigation.navigate(navigationStrings.HOMESCREEN)
+            // navigation.navigate(navigationStrings.HOMESCREEN)
         }).catch((error) => {
             console.log(error, "error occurred")
         })
@@ -214,10 +215,11 @@ const EditProfile = ({ navigation }) => {
                     <Text style={styles.phonetxt}>PHONE NUMBER</Text>
                 </View>
                 <View style={styles.codeview}>
-                    <View style={{ flex: 0.4,marginTop:4,
-                        paddingRight:10,
-                        marginRight:10,
-                        }}>
+                    <View style={{
+                        flex: 0.4, marginTop: 4,
+                        paddingRight: 10,
+                        marginRight: 10,
+                    }}>
                         <CountryCodePicker
                             countryCode={countryCode}
                             countryFlag={countryFlag}
@@ -226,9 +228,9 @@ const EditProfile = ({ navigation }) => {
 
                         />
                     </View>
-                    <View style={{ flex: 0.6}}>
+                    <View style={{ flex: 0.6 }}>
                         <TextInputComp
-                            inputStyle={{fontSize:textScale(14)}}
+                            inputStyle={{ fontSize: textScale(14) }}
                             value={phone_number}
                             onChangeText={(phone_number) => updateState({ phone_number })}
                             inputview={styles.phoneinput}

@@ -9,20 +9,28 @@ import imagePath from '../../constants/imagePath'
 import actions from '../../Redux/actions'
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
 import { saveUserData } from '../../Redux/actions/auth'
+import { moderateScale } from '../../styles/responsiveSize';
+import CountryCodePicker from '../../Components/CountryCodePicker'
+
 const PhoneLogin = ({ navigation }) => {
+    const [countryCode, setCountryCode] = useState('91');
+    const [countryFlag, setCountryFlag] = useState('IN');
 
     const [state, setState] = useState({
 
         phone_number: "",
-        device_token: ""
+        country_code: countryCode,
+        country_flag: countryFlag,
     })
 
-    const { phone_number, device_token } = state;
+    const { phone_number, country_code, country_flag } = state;
     const updateState = (data) => setState(state => ({ ...state, ...data }));
 
     const PhoneLogin = async () => {
         let apiData = {
             phone_number: phone_number,
+            country_code: country_code,
+            country_flag: country_flag,
         }
         try {
             const res = await actions.Login(apiData).then((res) => {
@@ -102,11 +110,25 @@ const PhoneLogin = ({ navigation }) => {
                     <Text style={styles.phonetxt}>Phone</Text>
                 </View>
             </View>
-            <TextInputComp
-                value={phone_number}
-                onChangeText={(phone_number) => updateState({ phone_number })}
-                inputview={styles.inputstyle}
-                placeHolder={"Enter Phone Number"} />
+
+            <View style={{ flexDirection: 'row', marginVertical: moderateScale(18) }}>
+                <View style={{ flex: 0.38, }}>
+                    <CountryCodePicker
+                        countryCode={countryCode}
+                        countryFlag={countryFlag}
+                        setCountryCode={setCountryCode}
+                        setCountryFlag={setCountryFlag}
+                    />
+                </View>
+                <View style={{ flex: 0.8 }}>
+                    <TextInputComp
+                        value={phone_number}
+                        onChangeText={(phone_number) => updateState({ phone_number })}
+                        inputview={styles.inputstyle}
+                        placeHolder={"Enter Phone Number"} />
+                </View>
+
+            </View>
             <View style={styles.descstyle}>
                 <Text style={styles.desctxt}>An OTP will be send to entered mobile number</Text>
             </View>

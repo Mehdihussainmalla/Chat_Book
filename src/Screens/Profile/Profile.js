@@ -2,20 +2,18 @@ import { StyleSheet, Text, View, Image, ScrollView, Alert, TouchableOpacity, } f
 import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Header from '../../Components/Header'
-import imagePath from '../../constants/imagePath'
 import TextInputComp from '../../Components/TextInputs'
 import Button from '../../Components/Button'
 import navigationStrings from '../../navigation/navigationStrings'
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './style';
 import actions from "../../Redux/actions";
-import { useSelector } from 'react-redux'
+
 const Profile = ({ navigation, route }) => {
-    //const datass = useSelector(state=>state?.auth?.userData);
-    // console.log(datass,"dataaa>>>>>")
+
      const data = route?.params;
-     const tokenNumber = data.token;
-    console.log(token, "data is>>>")
+     const tokenNumber = data?.data?.token;
+    console.log(data, "data is>>>")
     const id = data?.id;
     const [state, setState] = useState({
         email: "",

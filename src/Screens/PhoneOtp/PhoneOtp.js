@@ -20,8 +20,10 @@ const PhoneOtp = ({ navigation, route }) => {
   const id = details?.id;
   const email = details?.email;
   const [code, setCode] = useState();
+  const [type, setType] = useState("1");
 
   const verifyOtp = async () => {
+
     let apiData = {
 
       otp: code,
@@ -43,7 +45,7 @@ const PhoneOtp = ({ navigation, route }) => {
 
   const resendOtp = async () => {
     let apiData;
-
+    setCode("")
     if (email) {
       apiData = {
         type: "1",
@@ -56,9 +58,8 @@ const PhoneOtp = ({ navigation, route }) => {
         id: id,
       }
     }
-    const res = await actions.resendOtp(apiData)
     try {
-
+      const res = await actions.resendOtp(apiData)
     } catch (error) {
       console.log(error, "error")
 
@@ -102,11 +103,9 @@ const PhoneOtp = ({ navigation, route }) => {
           />
         </View>
         <View style={{ marginTop: 20 }}>
-          <Text style={{ fontFamily: fontFamily.BarlowBold }}>We have sent you the one time password on your email address</Text>
-        </View>
-        <View style={{ flexDirection: "row", }}>
-          <Text style={{ fontSize: textScale(14) }}>your otp is:- </Text>
-          <Text style={{ fontSize: textScale(14), color: "green" }}>{otp}</Text>
+          {type == "1" ? <Text style={{ fontFamily: fontFamily.BarlowBold }}>We have sent you the one
+            time password on your email address</Text> : <Text style={{ fontFamily: fontFamily.BarlowBold }}>We have sent you the one
+              time password on your Phone Number</Text>}
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
           <Text style={{ fontFamily: fontFamily.BarlowSemiBold, }}>Didn't received OTP code?</Text>

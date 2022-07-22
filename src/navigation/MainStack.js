@@ -13,8 +13,7 @@ const MainStack = (Stack) => {
 
                 <Stack.Screen component={TabStack}
                     name={navigationStrings.TABSTACK} />
-                <Stack.Screen component={Profile}
-                    name={navigationStrings.PROFILE} />
+              
 
             </Stack.Navigator>
         </>
