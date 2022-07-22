@@ -23,7 +23,7 @@ const EditProfile = ({ navigation }) => {
     const user_name = userData.username;
     const aboutus = userData.about_us;
     const Name = userData.name;
-    console.log(userData, "userdata is")
+    // console.log(userData, "userdata is")
 
 
     const [countryCode, setCountryCode] = useState('91');
@@ -89,7 +89,7 @@ const EditProfile = ({ navigation }) => {
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
             saveUserData(res)
-            // navigation.navigate(navigationStrings.HOMESCREEN)
+             navigation.navigate(navigationStrings.HOMESCREEN)
         }).catch((error) => {
             console.log(error, "error occurred")
         })
@@ -171,8 +171,6 @@ const EditProfile = ({ navigation }) => {
 
                 <Header
                     isBackIcon={true} />
-                {/* <View style={styles.imgstyle}> */}
-
                 <Image
                     style={styles.img}
                     source={{ uri: image_url }} />
@@ -212,31 +210,17 @@ const EditProfile = ({ navigation }) => {
                     placeHolder={"DD/MM/YY"} />
 
                 <View style={styles.phonelabel}>
-                    <Text style={styles.phonetxt}>PHONE NUMBER</Text>
+                    <Text style={styles.phonetxt}>GENDER</Text>
                 </View>
-                <View style={styles.codeview}>
-                    <View style={{
-                        flex: 0.4, marginTop: 4,
-                        paddingRight: 10,
-                        marginRight: 10,
-                    }}>
-                        <CountryCodePicker
-                            countryCode={countryCode}
-                            countryFlag={countryFlag}
-                            setCountryCode={setCountryCode}
-                            setCountryFlag={setCountryFlag}
 
-                        />
-                    </View>
-                    <View style={{ flex: 0.6 }}>
-                        <TextInputComp
-                            inputStyle={{ fontSize: textScale(14) }}
-                            value={phone_number}
-                            onChangeText={(phone_number) => updateState({ phone_number })}
-                            inputview={styles.phoneinput}
-                            placeHolder={"+916005927575"} />
-                    </View>
-                </View>
+                <TextInputComp
+                    inputStyle={{ fontSize: textScale(14) }}
+                    value={gender}
+                    onChangeText={(gender) => updateState({ phone_ngenderumber })}
+                    inputview={styles.phoneinput}
+                    placeHolder={"gender"} />
+
+
 
                 <View style={styles.emaillabel}>
                     <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
@@ -262,7 +246,7 @@ const EditProfile = ({ navigation }) => {
                 onPress={profileUpdate}
                 ButtonTxt={"Proceed"} />
 
-        </WrapperContainer>
+        </WrapperContainer >
     )
 };
 export default EditProfile;

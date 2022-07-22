@@ -61,8 +61,10 @@ const HomeScreen = ({ navigation }) => {
                 style={{ marginTop: 5 }}
                 source={imagePath.HamBurger} />
             </TouchableOpacity>
-            <Text style={{ fontSize: 16, paddingLeft: 100, marginTop: 8,
-               fontFamily: fontFamily.BarlowSemiBold }}>Home</Text>
+            <Text style={{
+              fontSize: 16, paddingLeft: 100, marginTop: 8,
+              fontFamily: fontFamily.BarlowSemiBold
+            }}>Home</Text>
           </View>
           <TouchableOpacity style={{ marginTop: 10 }} >
             <Image source={imagePath.Radio_icon} />
@@ -82,15 +84,22 @@ const HomeScreen = ({ navigation }) => {
           <Text style={{ marginRight: 50, fontSize: textScale(15), alignSelf: "center", fontWeight: "600" }}>Suggested for you</Text>
           <Text style={{ fontSize: textScale(15), color: colors.red }}>SeeAll</Text>
         </View>
-        
+
         <ProfileComp />
 
-        <TouchableOpacity
-           onPress={signOut}
-          style={{ marginTop: 5 }}
+        <View
+
+          style={{ marginVertical: 20,flexDirection:"row",justifyContent:"space-between" }}
         >
-          <Text>HomeScreen</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.EDIT_PROFILE)}>
+            <Text style={{ fontSize: textScale(15) }}>edit profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={signOut}
+          >
+            <Text style={{ fontSize: textScale(20) }}>logout</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </WrapperContainer>
   )

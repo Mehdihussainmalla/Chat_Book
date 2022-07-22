@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, ScrollView, Alert, TouchableOpacity, } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Header from '../../Components/Header'
 import TextInputComp from '../../Components/TextInputs'
@@ -11,8 +11,8 @@ import actions from "../../Redux/actions";
 
 const Profile = ({ navigation, route }) => {
 
-     const data = route?.params;
-     const tokenNumber = data?.data?.token;
+    const data = route?.params;
+    const tokenNumber = data?.data?.token;
     console.log(data, "data is>>>")
     const id = data?.id;
     const [state, setState] = useState({
@@ -22,31 +22,33 @@ const Profile = ({ navigation, route }) => {
         image_url: "",
         dob: "",
         username: "",
-        gender: "male",
+        gender: "",
         about_us: "",
         name: "",
-        token:tokenNumber,
+        token: tokenNumber,
     })
 
     const { email, phone_number, country_code, image_url,
         dob, username, gender, about_us,
-        name,token } = state;
+        name, token } = state;
 
     const updateState = (data) => setState(state => ({ ...state, ...data }));
+
+    // useEffect(()=>{
+
+    // },[])
 
     const profileUpdate = async () => {
 
         let formData = new FormData();
-            // formData.append('Token', token),
-            formData.append('id', id),
+
+        formData.append('id', id),
             formData.append('username', username),
             formData.append('dob', dob),
-            formData.append('phone_number', phone_number),
             formData.append('email', email),
             formData.append('name', name),
             formData.append('about_us', about_us),
             formData.append('gender', gender),
-            formData.append('country_code', country_code)
             formData.append('image_url', image_url);
         // {
         //     uri: image_url,
@@ -56,7 +58,7 @@ const Profile = ({ navigation, route }) => {
         console.log(formData, "formdata >>>")
         let header = { "Content-Type": "multipart/form-data" }
         await actions.editProfile(formData, header).then((res) => {
-       navigation.navigate(navigationStrings.ACCOUNT_CREATED,{data:res})
+            navigation.navigate(navigationStrings.ACCOUNT_CREATED, { data: res })
 
         }).catch((error) => {
             console.log(error, "error occurred")
@@ -102,7 +104,7 @@ const Profile = ({ navigation, route }) => {
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
-             updateState({ image_url: imageUri })
+            updateState({ image_url: imageUri })
             //console.log(image_url, " image is")
         });
     }
@@ -144,14 +146,14 @@ const Profile = ({ navigation, route }) => {
                     placeHolder={"DD/MM/YY"} />
 
                 <View style={styles.phonelabel}>
-                    <Text style={styles.phonetxt}>PHONE NUMBER</Text>
+                    <Text style={styles.phonetxt}>GENDER</Text>
                 </View>
                 <TextInputComp
 
-                    value={phone_number}
-                    onChangeText={(phone_number) => updateState({ phone_number })}
+                    value={gender}
+                    onChangeText={(gender) => updateState({ gender })}
                     inputview={styles.phoneinput}
-                    placeHolder={"+916005927575"} />
+                    placeHolder={"gender"} />
 
                 <View style={styles.emaillabel}>
                     <Text style={styles.emailtxt}>EMAIL ADDRESS</Text>
